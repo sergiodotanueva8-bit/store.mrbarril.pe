@@ -1,0 +1,26 @@
+# ============================================================
+# CONFIGURACIÓN DE DESPLIEGUE EN RENDER (Static Site)
+# ============================================================
+# Este archivo permite que Render detecte automáticamente cómo
+# desplegar el proyecto si usas "Blueprint" (render.yaml).
+#
+# Si prefieres configurarlo manualmente desde el dashboard de
+# Render (más simple), no necesitas este archivo: solo sigue las
+# instrucciones del README.md, sección "Desplegar en Render".
+# ============================================================
+
+services:
+  - type: web
+    name: tendedero-plegable-landing
+    runtime: static
+    buildCommand: "echo 'Sitio estático, no requiere build'"
+    staticPublishPath: ./
+    pullRequestPreviewsEnabled: false
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: public, max-age=3600

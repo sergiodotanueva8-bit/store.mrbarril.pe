@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="es-PE">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tendedero Plegable 5 Líneas | Envío Gratis a Todo el Perú</title>
+  <meta name="description" content="Tendedero plegable de 5 líneas, soporta hasta 150kg, fácil instalación. Pago contra entrega, envíos a todo el Perú. ¡Oferta por tiempo limitado!" />
+
+  <!-- Open Graph (para que se vea bien al compartir en redes / WhatsApp) -->
+  <meta property="og:title" content="Tendedero Plegable 5 Líneas" />
+  <meta property="og:description" content="Más espacio para tender, cuando lo necesitas. Soporta hasta 150kg. Envío gratis a todo el Perú." />
+  <meta property="og:image" content="assets/images/producto-hero-principal.jpg" />
+  <meta property="og:type" content="product" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="css/variables.css" />
+  <link rel="stylesheet" href="css/landing.css" />
+  <link rel="stylesheet" href="css/checkout-modal.css" />
+</head>
+<body>
+
+  <!-- ============================================================
+       BARRA SUPERIOR DE CONFIANZA
+       ============================================================ -->
+  <div class="barra-confianza">
+    <div class="contenedor">
+      <span class="barra-confianza__item">🚚 Envíos rápidos a todo el Perú</span>
+      <span class="barra-confianza__item">🛡️ Pago contra entrega</span>
+      <span class="barra-confianza__item">✅ Garantía de 30 días</span>
+      <span class="barra-confianza__item">
+        <span class="barra-confianza__estrellas">★★★★★</span> +10,000 clientes satisfechos
+      </span>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECCIÓN PRODUCTO
+       ============================================================ -->
+  <main class="producto contenedor" id="seccion-producto">
+    <div class="producto__grid">
+
+      <!-- ---------------- GALERÍA ----------------
+           Mobile: carrusel horizontal deslizable (scroll-snap) con dots,
+           pensado para el gesto natural de "swipe" de TikTok/Instagram.
+           Desktop (≥900px): miniaturas verticales + imagen grande,
+           controladas por el mismo JS pero mostrando/ocultando con CSS.
+      -->
+      <section class="galeria" aria-label="Galería de imágenes del producto">
+        <div class="galeria__badges">
+          <span class="badge-oferta">🔥 OFERTA POR TIEMPO LIMITADO</span>
+          <span class="badge-solo-hoy">⚡ SOLO POR HOY</span>
+        </div>
+
+        <div class="galeria__principal-wrap">
+          <!-- Miniaturas laterales (solo visibles desktop) -->
+          <div class="galeria__miniaturas">
+            <button class="miniatura activa" data-indice="0" aria-label="Ver imagen 1">
+              <img src="assets/images/miniatura-1-logo.jpg" alt="Miniatura 1 - Tendedero Plegable 5 Líneas" loading="lazy" />
+            </button>
+            <button class="miniatura" data-indice="1" aria-label="Ver imagen 2">
+              <img src="assets/images/miniatura-2-instalado-pared.jpg" alt="Miniatura 2 - Instalado en pared" loading="lazy" />
+            </button>
+            <button class="miniatura" data-indice="2" aria-label="Ver imagen 3">
+              <img src="assets/images/miniatura-3-plegado.jpg" alt="Miniatura 3 - Producto plegado" loading="lazy" />
+            </button>
+            <button class="miniatura" data-indice="3" aria-label="Ver imagen 4">
+              <img src="assets/images/miniatura-4-detalle-lineas.jpg" alt="Miniatura 4 - Detalle de líneas" loading="lazy" />
+            </button>
+          </div>
+
+          <!-- Carrusel: cada slide ocupa el 100% del ancho en mobile -->
+          <div class="galeria__carrusel" id="galeria-carrusel">
+
+            <!--
+              SLIDE 1 / IMAGEN PRINCIPAL (HERO): producto-hero-principal.jpg
+              Tamaño recomendado: 1200x1500 px (relación 4:5, vertical)
+              Formato: JPG optimizado para web (calidad 80-85%), peso ideal < 300KB
+              Debe mostrar: el tendedero instalado en la pared con ropa colgada,
+              fondo de cielo/exterior, tal como en el diseño de referencia.
+            -->
+            <div class="galeria__slide" data-slide="0">
+              <div class="galeria__overlay-texto">
+                <h2>TENDEDERO PLEGABLE<br />5 LÍNEAS</h2>
+                <p>Más espacio para tender, cuando lo necesitas.</p>
+              </div>
+              <div class="galeria__sello-peso">
+                SOPORTA HASTA<br /><strong>150</strong>KG
+              </div>
+              <img
+                src="assets/images/producto-hero-principal.jpg"
+                alt="Tendedero Plegable 5 Líneas instalado en pared con ropa colgada"
+              />
+
+              <!--
+                VIDEO DEL PRODUCTO (opcional, reemplaza el botón de play):
+                Archivo recomendado: producto-video-demo.mp4
+                Resolución recomendada: 1080x1350 px o 1080x1920 px (vertical, estilo TikTok/Reels)
+                Duración ideal: 15-30 segundos | Peso ideal: < 8MB
+                Para activarlo, descomenta el <video> de abajo.
+
+                <video controls poster="assets/images/producto-hero-principal.jpg" style="display:none;">
+                  <source src="assets/videos/producto-video-demo.mp4" type="video/mp4" />
+                </video>
+              -->
+              <button class="galeria__play" aria-label="Reproducir video del producto">▶</button>
+            </div>
+
+            <!--
+              SLIDE 2: foto-2-instalado-pared.jpg
+              Tamaño recomendado: 1200x1500 px (relación 4:5, vertical)
+            -->
+            <div class="galeria__slide" data-slide="1">
+              <img src="assets/images/foto-2-instalado-pared.jpg" alt="Tendedero instalado en pared" loading="lazy" />
+            </div>
+
+            <!--
+              SLIDE 3: foto-3-plegado.jpg
+              Tamaño recomendado: 1200x1500 px (relación 4:5, vertical)
+            -->
+            <div class="galeria__slide" data-slide="2">
+              <img src="assets/images/foto-3-plegado.jpg" alt="Tendedero plegado" loading="lazy" />
+            </div>
+
+            <!--
+              SLIDE 4: foto-4-detalle-lineas.jpg
+              Tamaño recomendado: 1200x1500 px (relación 4:5, vertical)
+            -->
+            <div class="galeria__slide" data-slide="3">
+              <img src="assets/images/foto-4-detalle-lineas.jpg" alt="Detalle de las 5 líneas" loading="lazy" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Dots indicadores (solo mobile, reemplazan a las miniaturas) -->
+        <div class="galeria__dots" id="galeria-dots">
+          <button class="galeria__dot activo" data-indice="0" aria-label="Ir a imagen 1"></button>
+          <button class="galeria__dot" data-indice="1" aria-label="Ir a imagen 2"></button>
+          <button class="galeria__dot" data-indice="2" aria-label="Ir a imagen 3"></button>
+          <button class="galeria__dot" data-indice="3" aria-label="Ir a imagen 4"></button>
+        </div>
+
+        <!-- Características rápidas debajo de la galería -->
+        <div class="caracteristicas-rapidas">
+          <div class="caracteristica-rapida">
+            <div class="caracteristica-rapida__icono">🎯</div>
+            <div class="caracteristica-rapida__titulo">5 LÍNEAS</div>
+            <div class="caracteristica-rapida__detalle">Más espacio para tender</div>
+          </div>
+          <div class="caracteristica-rapida">
+            <div class="caracteristica-rapida__icono">📦</div>
+            <div class="caracteristica-rapida__titulo">PLEGABLE</div>
+            <div class="caracteristica-rapida__detalle">Guárdalo cuando no lo uses</div>
+          </div>
+          <div class="caracteristica-rapida">
+            <div class="caracteristica-rapida__icono">🛠️</div>
+            <div class="caracteristica-rapida__titulo">ACERO INOXIDABLE</div>
+            <div class="caracteristica-rapida__detalle">Resistente al óxido y clima</div>
+          </div>
+          <div class="caracteristica-rapida">
+            <div class="caracteristica-rapida__icono">⚡</div>
+            <div class="caracteristica-rapida__titulo">FÁCIL INSTALACIÓN</div>
+            <div class="caracteristica-rapida__detalle">Listo en minutos</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ---------------- INFO DE COMPRA ---------------- -->
+      <section class="info-compra" aria-label="Información de compra">
+        <div class="info-compra__viendo">
+          ⚠️ <span data-personas-viendo>20 personas están viendo este producto</span>
+        </div>
+
+        <h1 class="info-compra__titulo">
+          TENDEDERO PLEGABLE 5 LÍNEAS
+          <span class="info-compra__verificado">✔️</span>
+        </h1>
+
+        <div class="info-compra__resenas">
+          <span class="estrellas">★★★★★</span>
+          <strong>5.0</strong>
+          <span>(128 reseñas)</span>
+        </div>
+
+        <ul class="info-compra__beneficios">
+          <li>Ahorra espacio en tu hogar</li>
+          <li>Soporta hasta 150KG de peso</li>
+          <li>Ideal para interiores y exteriores</li>
+          <li>Fácil instalación con tornillos incluidos</li>
+        </ul>
+
+        <div class="alerta-stock">
+          <div class="alerta-stock__texto">
+            ⚠️ <span data-stock-texto>¡SOLO QUEDAN 8 UNIDADES!</span>
+          </div>
+          <div class="alerta-stock__barra-fondo">
+            <div class="alerta-stock__barra-relleno" data-stock-barra style="width: 80%;"></div>
+          </div>
+        </div>
+
+        <div class="info-compra__pills">
+          <span class="pill">🚚 Envío Gratis a todo el Perú</span>
+          <span class="pill pill--azul">💳 Pago al Recibir</span>
+        </div>
+
+        <div class="precio-actual-wrap">
+          <span class="precio-actual">S/ 89.00</span>
+          <span class="precio-tachado">S/ 200.00</span>
+          <span class="badge-descuento">-56%</span>
+        </div>
+
+        <!-- Opciones de cantidad -->
+        <div class="opciones-cantidad">
+          <div class="opcion-cantidad seleccionada" data-cantidad="1">
+            <span class="opcion-cantidad__radio"></span>
+            <div class="opcion-cantidad__info">
+              <div class="opcion-cantidad__titulo">1 Unidad</div>
+              <div class="opcion-cantidad__subtitulo">Precio regular</div>
+            </div>
+            <div class="opcion-cantidad__precios">
+              <span class="opcion-cantidad__precio-final">S/ 89.00</span>
+            </div>
+          </div>
+
+          <div class="opcion-cantidad" data-cantidad="2">
+            <span class="opcion-cantidad__radio"></span>
+            <div class="opcion-cantidad__info">
+              <span class="opcion-cantidad__badge">-20% OFF</span>
+              <div class="opcion-cantidad__titulo">Lleva 2 con 20% dscto.</div>
+            </div>
+            <div class="opcion-cantidad__precios">
+              <span class="opcion-cantidad__precio-tachado">S/ 142.40</span>
+              <span class="opcion-cantidad__precio-final">S/ 71.20 c/u</span>
+            </div>
+          </div>
+
+          <div class="opcion-cantidad" data-cantidad="3">
+            <span class="opcion-cantidad__radio"></span>
+            <div class="opcion-cantidad__info">
+              <span class="opcion-cantidad__badge">-25% OFF</span>
+              <div class="opcion-cantidad__titulo">Lleva 3 con 25% dscto.</div>
+            </div>
+            <div class="opcion-cantidad__precios">
+              <span class="opcion-cantidad__precio-tachado">S/ 267.00</span>
+              <span class="opcion-cantidad__precio-final">S/ 66.75 c/u</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA principal -->
+        <button class="btn-cta-principal" data-abrir-checkout>
+          🛒 PEDIR Y PAGAR AL RECIBIR
+          <span class="btn-cta-principal__sub">Envío Gratis</span>
+        </button>
+
+        <div class="garantia-box">
+          <span class="garantia-box__icono">✅</span>
+          <div>
+            <div class="garantia-box__titulo">Garantía de Satisfacción</div>
+            <div class="garantia-box__texto">Si no estás feliz, te devolvemos tu dinero</div>
+          </div>
+        </div>
+
+        <div class="instalacion-mini">
+          <div>
+            <div class="instalacion-mini__texto">¿Quieres instalación en Lima?</div>
+            <div class="instalacion-mini__check">🔧 Servicio profesional por técnicos expertos</div>
+          </div>
+          <div class="instalacion-mini__precio">S/ 50.00</div>
+        </div>
+
+        <div class="tienda-lider">
+          <div class="tienda-lider__header">
+            <span>🏅</span>
+            <span class="tienda-lider__titulo">Tienda Líder Platinum</span>
+          </div>
+          <div class="tienda-lider__subtitulo">¡Uno de los mejores del sitio!</div>
+          <div class="tienda-lider__barra"></div>
+          <div class="tienda-lider__metricas">
+            <div>
+              <div class="tienda-lider__metrica-numero">37,320</div>
+              <div class="tienda-lider__metrica-texto">Ventas en los últimos 60 días</div>
+            </div>
+            <div>
+              <div class="tienda-lider__metrica-numero">👍</div>
+              <div class="tienda-lider__metrica-texto">Brindamos buen servicio</div>
+            </div>
+            <div>
+              <div class="tienda-lider__metrica-numero">📦</div>
+              <div class="tienda-lider__metrica-texto">Entregas rápidas y seguras</div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ============================================================
+         SECCIÓN INSTALACIÓN EN LIMA
+         ============================================================ -->
+    <div class="seccion-instalacion">
+      <!--
+        IMAGEN: icono-tecnico-instalador.png
+        Tamaño recomendado: 240x240 px (cuadrada, fondo transparente)
+        Formato: PNG con transparencia
+        Debe mostrar: silueta o ilustración de un técnico con taladro,
+        estilo flat/silueta como en el diseño de referencia.
+      -->
+      <img
+        src="assets/images/icono-tecnico-instalador.png"
+        alt="Técnico instalador profesional"
+        class="seccion-instalacion__icono"
+       loading="lazy" />
+
+      <div>
+        <h2 class="seccion-instalacion__titulo">¿Quieres instalación en <span>Lima</span>?</h2>
+        <p class="seccion-instalacion__subtitulo">Servicio profesional, rápido y seguro.</p>
+        <ul class="seccion-instalacion__lista">
+          <li>Instalación realizada por técnicos expertos</li>
+          <li>Herramientas y fijaciones incluidas</li>
+          <li>Garantía en la instalación</li>
+        </ul>
+        <div class="seccion-instalacion__zona">📍 Disponible solo para Lima Metropolitana</div>
+      </div>
+
+      <div class="seccion-instalacion__precio-box">
+        <div class="seccion-instalacion__precio">S/ 50.00</div>
+        <div class="seccion-instalacion__precio-label">Servicio Opcional</div>
+      </div>
+
+      <div class="seccion-instalacion__incluye">
+        <!--
+          IMAGEN: tornillos-tarugos-incluidos.png
+          Tamaño recomendado: 180x180 px (cuadrada, fondo transparente o blanco)
+          Formato: PNG o JPG
+          Debe mostrar: tornillos y tarugos (los accesorios de instalación)
+        -->
+        <img src="assets/images/tornillos-tarugos-incluidos.png" alt="Tornillos y tarugos incluidos"  loading="lazy" />
+        <p>
+          Enviamos todos los accesorios para que puedas realizar la instalación fácilmente por tu cuenta.<br />
+          <strong>Incluye:</strong> Tornillos, tarugos y manual de instalación.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============================================================
+       FRANJA DE CONFIANZA: envíos, métodos de pago, clientes
+       ============================================================ -->
+  <section class="franja-confianza">
+    <div class="contenedor">
+      <h3 class="seccion-titulo-centrado">ENVÍOS RÁPIDOS Y SEGUROS A TODO EL PERÚ</h3>
+
+      <!--
+        LOGOS DE COURIERS: dinsides.png, shalom.png, olva-courier.png, marvisur.png
+        Tamaño recomendado: 160x60 px cada uno (fondo transparente PNG)
+        Estos logos son de las empresas de courier; reemplázalos con
+        los logos reales otorgados por cada empresa o tus aliados logísticos.
+      -->
+      <div class="logos-fila">
+        <img src="assets/images/logo-courier-dinsides.png" alt="Dinsides Courier"  loading="lazy" />
+        <img src="assets/images/logo-courier-shalom.png" alt="Shalom"  loading="lazy" />
+        <img src="assets/images/logo-courier-olva.png" alt="Olva Courier"  loading="lazy" />
+        <img src="assets/images/logo-courier-marvisur.png" alt="Expreso Marvisur"  loading="lazy" />
+      </div>
+
+      <!--
+        LOGOS DE MÉTODOS DE PAGO: visa.png, mastercard.png, amex.png, yape.png,
+        plin.png, bcp.png, scotiabank.png, interbank.png, bbva.png
+        Tamaño recomendado: 100x40 px cada uno (fondo transparente PNG)
+        Puedes descargar los logos oficiales desde el sitio de marca de
+        cada entidad (la mayoría tiene "brand guidelines" públicas).
+      -->
+      <div class="logos-fila logos-fila--pagos">
+        <img src="assets/images/logo-pago-visa.png" alt="Visa"  loading="lazy" />
+        <img src="assets/images/logo-pago-mastercard.png" alt="Mastercard"  loading="lazy" />
+        <img src="assets/images/logo-pago-amex.png" alt="American Express"  loading="lazy" />
+        <img src="assets/images/logo-pago-yape.png" alt="Yape"  loading="lazy" />
+        <img src="assets/images/logo-pago-plin.png" alt="Plin"  loading="lazy" />
+        <img src="assets/images/logo-pago-bcp.png" alt="BCP"  loading="lazy" />
+        <img src="assets/images/logo-pago-scotiabank.png" alt="Scotiabank"  loading="lazy" />
+        <img src="assets/images/logo-pago-interbank.png" alt="Interbank"  loading="lazy" />
+        <img src="assets/images/logo-pago-bbva.png" alt="BBVA"  loading="lazy" />
+      </div>
+
+      <h3 class="seccion-titulo-centrado">+10,000 CLIENTES FELICES EN TODO EL PERÚ</h3>
+
+      <!--
+        FOTOS DE CLIENTES (testimoniales): cliente-testimonio-1.jpg a cliente-testimonio-6.jpg
+        Tamaño recomendado: 300x330 px cada una (relación aprox. 1:1.1, vertical)
+        Formato: JPG, deben verse personas reales sosteniendo el paquete
+        recibido (idealmente con consentimiento/autorización del cliente).
+      -->
+      <div class="clientes-grid">
+        <img src="assets/images/cliente-testimonio-1.jpg" alt="Cliente satisfecho 1"  loading="lazy" />
+        <img src="assets/images/cliente-testimonio-2.jpg" alt="Cliente satisfecho 2"  loading="lazy" />
+        <img src="assets/images/cliente-testimonio-3.jpg" alt="Cliente satisfecho 3"  loading="lazy" />
+        <img src="assets/images/cliente-testimonio-4.jpg" alt="Cliente satisfecho 4"  loading="lazy" />
+        <img src="assets/images/cliente-testimonio-5.jpg" alt="Cliente satisfecho 5"  loading="lazy" />
+        <img src="assets/images/cliente-testimonio-6.jpg" alt="Cliente satisfecho 6"  loading="lazy" />
+      </div>
+
+      <h3 class="seccion-titulo-centrado" style="margin-top: 40px;">ENVÍOS GARANTIZADOS A TODO EL PERÚ</h3>
+
+      <!--
+        FOTOS DE ENVÍOS/PAQUETES: envio-paquete-1.jpg a envio-paquete-8.jpg
+        Tamaño recomendado: 200x200 px cada una (cuadrada)
+        Formato: JPG, fotos de paquetes empacados, camiones de reparto,
+        o evidencia de despacho (las que ya usas para mostrar logística real).
+      -->
+      <div class="envios-grid">
+        <img src="assets/images/envio-paquete-1.jpg" alt="Envío 1"  loading="lazy" />
+        <img src="assets/images/envio-paquete-2.jpg" alt="Envío 2"  loading="lazy" />
+        <img src="assets/images/envio-paquete-3.jpg" alt="Envío 3"  loading="lazy" />
+        <img src="assets/images/envio-paquete-4.jpg" alt="Envío 4"  loading="lazy" />
+        <img src="assets/images/envio-paquete-5.jpg" alt="Envío 5"  loading="lazy" />
+        <img src="assets/images/envio-paquete-6.jpg" alt="Envío 6"  loading="lazy" />
+        <img src="assets/images/envio-paquete-7.jpg" alt="Envío 7"  loading="lazy" />
+        <img src="assets/images/envio-paquete-8.jpg" alt="Envío 8"  loading="lazy" />
+      </div>
+
+      <div class="beneficios-finales">
+        <div>
+          <div style="font-size:22px;">🚚</div>
+          <div class="beneficio-final__titulo">ENVÍOS A TODO EL PERÚ</div>
+          <div class="beneficio-final__texto">Llegamos a tu ciudad</div>
+        </div>
+        <div>
+          <div style="font-size:22px;">💰</div>
+          <div class="beneficio-final__titulo">PAGO CONTRA ENTREGA</div>
+          <div class="beneficio-final__texto">Paga cuando recibes tu pedido</div>
+        </div>
+        <div>
+          <div style="font-size:22px;">🛡️</div>
+          <div class="beneficio-final__titulo">SEGURO Y CONFIABLE</div>
+          <div class="beneficio-final__texto">Tu compra está protegida</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       FOOTER DE MINI-BENEFICIOS (franja final oscura)
+       ============================================================ -->
+  <footer class="mini-beneficios-footer">
+    <div class="contenedor">
+      <div>
+        <div class="mini-beneficios-footer__item-titulo">🚚 ENVÍOS RÁPIDOS A TODO EL PERÚ</div>
+        <div class="mini-beneficios-footer__item-texto">A todo el Perú incluso provincia</div>
+      </div>
+      <div>
+        <div class="mini-beneficios-footer__item-titulo">💰 PAGO CONTRA ENTREGA</div>
+        <div class="mini-beneficios-footer__item-texto">Paga al recibir tu pedido</div>
+      </div>
+      <div>
+        <div class="mini-beneficios-footer__item-titulo">🛡️ GARANTÍA DE 30 DÍAS</div>
+        <div class="mini-beneficios-footer__item-texto">Si no estás feliz, te devolvemos tu dinero</div>
+      </div>
+      <div>
+        <div class="mini-beneficios-footer__item-titulo">🎧 ATENCIÓN PERSONALIZADA</div>
+        <div class="mini-beneficios-footer__item-texto">Te ayudamos por WhatsApp</div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="espaciador-barra-fija"></div>
+
+  <!-- ============================================================
+       BARRA FIJA INFERIOR (aparece al hacer scroll)
+       ============================================================ -->
+  <div class="barra-fija-inferior" id="barra-fija-inferior">
+    <div class="contenedor">
+      <div class="barra-fija-inferior__producto">
+        <img src="assets/images/miniatura-1-logo.jpg" alt="Tendedero Plegable 5 Líneas"  loading="lazy" />
+        <div>
+          <div class="barra-fija-inferior__nombre">Tendedero Plegable 5 Líneas</div>
+          <div class="barra-fija-inferior__precio">
+            <strong>S/ 89.00</strong> <span class="precio-tachado">S/ 200.00</span>
+            <span class="badge-descuento">-56%</span>
+          </div>
+        </div>
+      </div>
+      <span class="barra-fija-inferior__stock">🔥 <span data-stock-numero>8</span> unidades</span>
+      <button class="barra-fija-inferior__cta" data-abrir-checkout>
+        PEDIR Y PAGAR AL RECIBIR
+        <span>Envío Gratis</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       BOTÓN FLOTANTE DE WHATSAPP
+       ============================================================ -->
+  <a
+    href="https://wa.me/51987654321"
+    target="_blank"
+    rel="noopener"
+    class="whatsapp-flotante"
+    id="whatsapp-flotante"
+    aria-label="Contactar por WhatsApp"
+  >
+    <!--
+      ÍCONO: icono-whatsapp.svg (incluido inline, no requiere imagen externa)
+    -->
+    <svg width="30" height="30" viewBox="0 0 24 24" fill="white"><path d="M17.6 6.32A8.86 8.86 0 0 0 12.05 4a8.94 8.94 0 0 0-7.74 13.4L3 21l3.7-1.27a8.93 8.93 0 0 0 5.35 1.74h.01a8.94 8.94 0 0 0 8.94-8.93 8.86 8.86 0 0 0-2.4-6.22Zm-5.55 13.7a7.43 7.43 0 0 1-4.78-1.76l-.34-.27-3 1 1.02-2.94-.3-.33a7.42 7.42 0 0 1-1.6-4.63 7.45 7.45 0 1 1 9 7.93Zm4.08-5.58c-.22-.11-1.3-.64-1.5-.71-.2-.07-.35-.11-.5.11s-.58.71-.7.86c-.13.14-.26.16-.48.05-.22-.11-1.5-.55-2.5-1.56-.95-.95-1.4-1.86-1.5-2.08-.1-.21-.01-.32.1-.43.1-.1.22-.27.33-.4a.7.7 0 0 0 .1-.65c-.07-.2-.6-1.44-.82-1.94-.18-.43-.36-.37-.5-.38-.13-.01-.28-.01-.43-.01a.83.83 0 0 0-.6.28c-.2.21-.78.77-.78 1.86s.8 2.16.92 2.31c.11.15 1.55 2.37 3.77 3.23 2.22.86 2.22.57 2.62.53.4-.04 1.3-.53 1.48-1.04.18-.51.18-.95.13-1.04-.05-.1-.18-.16-.4-.27Z"/></svg>
+  </a>
+
+  <!-- ============================================================
+       MODAL DE CHECKOUT (Lima / Provincia)
+       ============================================================ -->
+  <div class="modal-overlay" id="modal-checkout-overlay">
+    <div class="modal-checkout" role="dialog" aria-modal="true" aria-labelledby="modal-checkout-titulo">
+      <button class="modal-checkout__cerrar" data-cerrar-checkout aria-label="Cerrar formulario">✕</button>
+
+      <!-- ---- Formulario ---- -->
+      <div id="modal-checkout-formulario">
+        <div class="modal-checkout__header">
+          <span class="modal-checkout__header-icono">✅</span>
+          <div>
+            <div class="modal-checkout__titulo" id="modal-checkout-titulo">Completa tus datos</div>
+            <div class="modal-checkout__subtitulo">Paga al recibir tu pedido</div>
+          </div>
+        </div>
+
+        <div class="modal-checkout__grid">
+          <!-- Columna izquierda: formulario -->
+          <div>
+            <div class="modal-paso">
+              <span class="modal-paso__numero">1</span>
+              ¿A dónde enviamos tu pedido?
+            </div>
+
+            <div class="selector-envio">
+              <button class="selector-envio__opcion activa" data-tipo-envio="lima" type="button">
+                <span class="selector-envio__icono">🚚</span>
+                <div>
+                  <div class="selector-envio__titulo">Envío a LIMA</div>
+                  <div class="selector-envio__subtitulo">Recibe en la puerta de tu casa</div>
+                </div>
+              </button>
+              <button class="selector-envio__opcion" data-tipo-envio="provincia" type="button">
+                <span class="selector-envio__icono">📦</span>
+                <div>
+                  <div class="selector-envio__titulo">Envío a PROVINCIA</div>
+                  <div class="selector-envio__subtitulo">Envíos por Shalom</div>
+                </div>
+              </button>
+            </div>
+
+            <div class="modal-paso">
+              <span class="modal-paso__numero">2</span>
+              <span id="modal-checkout-titulo-paso2">Ingresa tus datos de entrega</span>
+            </div>
+
+            <!-- ===== Campos: ENVÍO A LIMA ===== -->
+            <div data-seccion-envio="lima" class="activa">
+              <div class="campo">
+                <label for="campo-nombre-lima">Nombre completo</label>
+                <input type="text" id="campo-nombre-lima" placeholder="Ej: Juan Pérez" />
+                <span class="campo__error-texto" data-error-de="campo-nombre-lima"></span>
+              </div>
+              <div class="campo">
+                <label for="campo-whatsapp-lima">WhatsApp</label>
+                <input type="tel" id="campo-whatsapp-lima" placeholder="Ej: 912 345 678" />
+                <span class="campo__error-texto" data-error-de="campo-whatsapp-lima"></span>
+              </div>
+              <div class="campo">
+                <label for="campo-distrito">Distrito</label>
+                <input type="text" id="campo-distrito" placeholder="Ej: Los Olivos" />
+                <span class="campo__error-texto" data-error-de="campo-distrito"></span>
+              </div>
+              <div class="campo">
+                <label for="campo-direccion">Dirección exacta</label>
+                <input type="text" id="campo-direccion" placeholder="Ej: Av. Los Próceres 123, Urb. Los Jardines" />
+                <span class="campo__error-texto" data-error-de="campo-direccion"></span>
+              </div>
+
+              <label class="campo-checkbox" for="campo-agrega-instalacion">
+                <input type="checkbox" id="campo-agrega-instalacion" />
+                <span class="campo-checkbox__texto">¿Deseas agregar instalación en Lima?</span>
+                <span class="campo-checkbox__precio">S/ 50.00</span>
+              </label>
+
+              <div class="aviso-instalacion">
+                <!--
+                  IMAGEN/ÍCONO: icono-tecnico-instalador-pequeno.png
+                  Tamaño recomendado: 64x64 px (cuadrada, fondo transparente)
+                -->
+                <img src="assets/images/icono-tecnico-instalador-pequeno.png" alt="Técnico instalador" class="aviso-instalacion__icono"  loading="lazy" />
+                <div>
+                  <div class="aviso-instalacion__titulo">Servicio de instalación disponible solo para Lima</div>
+                  <div class="aviso-instalacion__texto">Nuestros técnicos instalan tu tendedero de forma segura y rápida. *Servicio opcional</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ===== Campos: ENVÍO A PROVINCIA ===== -->
+            <div data-seccion-envio="provincia">
+              <div class="campo">
+                <label for="campo-nombre-provincia">Nombre completo</label>
+                <input type="text" id="campo-nombre-provincia" placeholder="Ej: Juan Pérez" />
+                <span class="campo__error-texto" data-error-de="campo-nombre-provincia"></span>
+              </div>
+              <div class="campo">
+                <label for="campo-dni">DNI</label>
+                <input type="text" id="campo-dni" placeholder="Ej: 12345678" inputmode="numeric" maxlength="8" />
+                <span class="campo__error-texto" data-error-de="campo-dni"></span>
+              </div>
+              <div class="campo">
+                <label for="campo-whatsapp-provincia">WhatsApp</label>
+                <input type="tel" id="campo-whatsapp-provincia" placeholder="Ej: 912 345 678" />
+                <span class="campo__error-texto" data-error-de="campo-whatsapp-provincia"></span>
+              </div>
+              <div class="campo">
+                <label for="campo-departamento">Departamento</label>
+                <select id="campo-departamento">
+                  <option value="">Ej: Arequipa</option>
+                  <option>Amazonas</option>
+                  <option>Áncash</option>
+                  <option>Apurímac</option>
+                  <option>Arequipa</option>
+                  <option>Ayacucho</option>
+                  <option>Cajamarca</option>
+                  <option>Cusco</option>
+                  <option>Huancavelica</option>
+                  <option>Huánuco</option>
+                  <option>Ica</option>
+                  <option>Junín</option>
+                  <option>La Libertad</option>
+                  <option>Lambayeque</option>
+                  <option>Loreto</option>
+                  <option>Madre de Dios</option>
+                  <option>Moquegua</option>
+                  <option>Pasco</option>
+                  <option>Piura</option>
+                  <option>Puno</option>
+                  <option>San Martín</option>
+                  <option>Tacna</option>
+                  <option>Tumbes</option>
+                  <option>Ucayali</option>
+                </select>
+                <span class="campo__error-texto" data-error-de="campo-departamento"></span>
+              </div>
+              <div class="campo">
+                <label for="campo-ciudad-destino">Ciudad / Destino</label>
+                <input type="text" id="campo-ciudad-destino" placeholder="Ej: Arequipa, Cusco, Trujillo" />
+                <span class="campo__error-texto" data-error-de="campo-ciudad-destino"></span>
+              </div>
+              <div class="campo">
+                <label for="campo-sede-shalom">Sede de Shalom más cercana a tu domicilio</label>
+                <input type="text" id="campo-sede-shalom" placeholder="Ej: Shalom Arequipa, Shalom Cusco, Shalom Trujillo" />
+                <span class="campo__error-texto" data-error-de="campo-sede-shalom"></span>
+              </div>
+
+              <div class="aviso-shalom">
+                <span class="aviso-shalom__icono">ℹ️</span>
+                <div>
+                  <div class="aviso-shalom__titulo">Tu pedido será enviado por Shalom.</div>
+                  <div class="aviso-shalom__texto">Indica la sede de Shalom más cercana a tu domicilio para coordinar la entrega.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Columna derecha: resumen -->
+          <div class="resumen-pedido">
+            <!--
+              IMAGEN: producto-resumen-checkout.jpg
+              Tamaño recomendado: 400x300 px (relación 4:3)
+              Puede ser la misma imagen del hero, recortada a 4:3,
+              optimizada para verse pequeña dentro del resumen.
+            -->
+            <img src="assets/images/producto-hero-principal.jpg" alt="Tendedero Plegable 5 Líneas" class="resumen-pedido__producto-img"  loading="lazy" />
+            <div class="resumen-pedido__nombre">Tendedero Plegable 5 Líneas</div>
+            <div class="resumen-pedido__precio">S/ 89.00</div>
+
+            <div class="resumen-pedido__titulo">Resumen de tu pedido</div>
+            <div class="resumen-pedido__linea">
+              <span id="resumen-linea-producto-cantidad">Tendedero Plegable 5 Líneas (1 unidad)</span>
+              <span id="resumen-linea-producto-precio">S/ 89.00</span>
+            </div>
+            <div class="resumen-pedido__linea" id="resumen-linea-instalacion">
+              <span>Instalación (opcional)</span>
+              <span id="resumen-linea-instalacion-precio">No agregado</span>
+            </div>
+            <div class="resumen-pedido__linea">
+              <span>Envío</span>
+              <span id="resumen-linea-envio-texto">Gratis</span>
+            </div>
+
+            <div class="resumen-pedido__total">
+              <span class="resumen-pedido__total-label">Total a pagar</span>
+              <span class="resumen-pedido__total-valor" id="resumen-total-valor">S/ 89.00</span>
+            </div>
+
+            <div class="resumen-pedido__garantias">
+              <div class="resumen-pedido__garantia">
+                <span class="resumen-pedido__garantia-icono">💳</span>
+                <div>
+                  <span class="resumen-pedido__garantia-titulo">Pago contra entrega</span>
+                  <span class="resumen-pedido__garantia-texto">Paga cuando recibas tu pedido</span>
+                </div>
+              </div>
+              <div class="resumen-pedido__garantia">
+                <span class="resumen-pedido__garantia-icono">🚚</span>
+                <div>
+                  <span class="resumen-pedido__garantia-titulo">Envíos a todo el Perú</span>
+                  <span class="resumen-pedido__garantia-texto">Rápidos y seguros</span>
+                </div>
+              </div>
+              <div class="resumen-pedido__garantia">
+                <span class="resumen-pedido__garantia-icono">✅</span>
+                <div>
+                  <span class="resumen-pedido__garantia-titulo">Garantía de satisfacción</span>
+                  <span class="resumen-pedido__garantia-texto">Si no estás feliz, te devolvemos tu dinero</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-confirmar-pedido" id="btn-confirmar-pedido">
+          <span>📱 CONFIRMAR PEDIDO POR WHATSAPP</span>
+          <span class="btn-confirmar-pedido__sub">Te redirigiremos a WhatsApp para coordinar tu pedido</span>
+        </button>
+
+        <div class="modal-checkout__privacidad">
+          🔒 Tus datos están 100% seguros y protegidos.
+        </div>
+      </div>
+
+      <!-- ---- Pantalla de éxito ---- -->
+      <div class="modal-checkout__exito" id="modal-checkout-exito">
+        <div class="modal-checkout__exito-icono">✅</div>
+        <div class="modal-checkout__exito-titulo">¡Pedido registrado!</div>
+        <div class="modal-checkout__exito-texto">
+          Te estamos redirigiendo a WhatsApp para confirmar los últimos detalles de tu entrega.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SCRIPTS
+       ============================================================ -->
+  <!-- Librería oficial de Supabase (CDN) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+
+  <script src="js/config.js"></script>
+  <script src="js/supabase-client.js"></script>
+  <script src="js/pixels.js"></script>
+  <script src="js/checkout-modal.js"></script>
+  <script src="js/landing.js"></script>
+</body>
+</html>

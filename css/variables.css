@@ -1,0 +1,120 @@
+/* ============================================================
+   VARIABLES GLOBALES — paleta, tipografía, espaciados
+   ============================================================ */
+:root {
+  /* Colores de marca (extraídos del diseño de referencia) */
+  --color-naranja: #f4750f;
+  --color-naranja-hover: #e0660a;
+  --color-naranja-claro: #fff1e6;
+  --color-rojo: #e02b2b;
+  --color-rojo-claro: #fdeaea;
+  --color-verde: #1d8a4a;
+  --color-verde-oscuro: #166a39;
+  --color-verde-claro: #eaf7ef;
+  --color-azul: #1f6fd6;
+  --color-azul-claro: #eaf2fc;
+  --color-amarillo-estrella: #f5a623;
+
+  --color-texto: #1a1a1a;
+  --color-texto-secundario: #555555;
+  --color-texto-tenue: #888888;
+  --color-borde: #e3e3e3;
+  --color-fondo: #ffffff;
+  --color-fondo-gris: #f7f7f7;
+
+  /* Tipografía */
+  --font-principal: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  /* Radios y sombras */
+  --radio-sm: 6px;
+  --radio-md: 10px;
+  --radio-lg: 16px;
+  --sombra-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --sombra-md: 0 4px 14px rgba(0, 0, 0, 0.10);
+  --sombra-lg: 0 10px 30px rgba(0, 0, 0, 0.16);
+
+  /* Layout */
+  --ancho-maximo: 1280px;
+  --espacio-seccion: 48px;
+}
+
+/* ============================================================
+   RESET BÁSICO
+   ============================================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-principal);
+  color: var(--color-texto);
+  background: var(--color-fondo);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+input, select, textarea {
+  font-family: inherit;
+  font-size: 15px;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+.contenedor {
+  max-width: var(--ancho-maximo);
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Accesibilidad: foco visible para navegación por teclado */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--color-azul);
+  outline-offset: 2px;
+}
+
+/* Respeta preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

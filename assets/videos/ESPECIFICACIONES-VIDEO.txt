@@ -1,0 +1,35 @@
+ESPECIFICACIONES DEL VIDEO DEL PRODUCTO
+========================================
+
+Archivo esperado: producto-video-demo.mp4
+Ubicación: assets/videos/producto-video-demo.mp4
+
+RESOLUCIÓN RECOMENDADA:
+- Vertical (estilo TikTok/Reels): 1080 x 1920 px
+- O vertical 4:5 (estilo feed de Instagram/Facebook): 1080 x 1350 px
+
+DURACIÓN IDEAL:
+- 15 a 30 segundos (suficiente para mostrar instalación + uso)
+
+PESO IDEAL:
+- Menos de 8 MB, para que cargue rápido en la landing
+- Si pesa más, comprímelo con HandBrake o con ffmpeg:
+  ffmpeg -i original.mp4 -vcodec libx264 -crf 28 producto-video-demo.mp4
+
+FORMATO:
+- .mp4 (codec H.264), compatible con todos los navegadores y celulares
+
+CONTENIDO SUGERIDO:
+- 0-5s: Mostrar el tendedero plegado/guardado
+- 5-15s: Mostrar cómo se despliega e instala
+- 15-25s: Mostrar ropa colgada, capacidad de las 5 líneas
+- 25-30s: Cierre con el producto instalado en la pared
+
+CÓMO ACTIVARLO EN LA LANDING:
+1. Coloca tu archivo en assets/videos/producto-video-demo.mp4
+2. Abre index.html y busca el comentario "VIDEO DEL PRODUCTO"
+3. Descomenta la etiqueta <video> que está justo debajo de la
+   imagen principal (data-rol="principal")
+4. Opcional: si prefieres usar un video de YouTube en vez de un
+   archivo propio, puedes reemplazar el botón de play por un
+   <iframe> embebido de YouTube.

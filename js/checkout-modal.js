@@ -210,11 +210,25 @@ const CheckoutModal = (function () {
   }
 
   // ----------------------------------------------------------
-  // Armar el mensaje de WhatsApp con el resumen del pedido
+  // Mensaje CORTO: es el único texto que se abre en el WhatsApp
+  // del cliente. Solo confirma el pedido, sin datos sensibles,
+  // porque el detalle completo se lo envías tú desde la app admin.
   // ----------------------------------------------------------
-  function armarMensajeWhatsapp(datos, resumen) {
+  function armarMensajeConfirmacionCorta(datos) {
+    return (
+      "¡Hola! Acabo de confirmar mi pedido de *" + CONFIG.PRODUCTO_NOMBRE + "*. " +
+      "Quedo atento(a) al detalle de mi compra. ¡Gracias!"
+    );
+  }
+
+  // ----------------------------------------------------------
+  // Mensaje COMPLETO: se guarda en Supabase (mensaje_pedido_completo)
+  // para que tú lo copies con un tap desde la app admin y se lo
+  // reenvíes al cliente por WhatsApp.
+  // ----------------------------------------------------------
+  function armarMensajePedidoCompleto(datos, resumen) {
     const lineas = [];
-    lineas.push("¡Hola! Quiero confirmar mi pedido:");
+    lineas.push("¡Hola! Aquí el detalle de tu pedido:");
     lineas.push("");
     lineas.push("🧺 *" + CONFIG.PRODUCTO_NOMBRE + "*");
     lineas.push("Cantidad: " + cantidadActual);
@@ -299,15 +313,17 @@ const CheckoutModal = (function () {
     datos.costoInstalacion = resumen.costoInstalacion;
     datos.totalPagar = resumen.total;
 
-    const mensajeWhatsapp = armarMensajeWhatsapp(datos, resumen);
-    datos.mensajeWhatsapp = mensajeWhatsapp;
+    const mensajeCorto = armarMensajeConfirmacionCorta(datos);
+    const mensajeCompleto = armarMensajePedidoCompleto(datos, resumen);
+    datos.mensajeWhatsappCorto = mensajeCorto;
+    datos.mensajePedidoCompleto = mensajeCompleto;
 
     // ── PASO 1: Abrir WhatsApp INMEDIATAMENTE (respuesta directa al tap del usuario) ──
     // iOS Safari solo permite window.open() en el mismo tick del gesto.
     // Cualquier await antes de esto lo bloquea sin aviso.
     const numeroWhatsapp = CONFIG.WHATSAPP_NUMERO.replace(/\D/g, "");
     const urlWhatsapp =
-      "https://wa.me/" + numeroWhatsapp + "?text=" + encodeURIComponent(mensajeWhatsapp);
+      "https://wa.me/" + numeroWhatsapp + "?text=" + encodeURIComponent(mensajeCorto);
     window.open(urlWhatsapp, "_blank");
 
     // ── PASO 2: Mostrar pantalla de éxito ──

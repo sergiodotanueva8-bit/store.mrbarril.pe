@@ -11,6 +11,16 @@
 const CONFIG = {
 
   // ----------------------------------------------------------
+  // 0. IDENTIFICADOR DE TIENDA (multi-tienda)
+  // ----------------------------------------------------------
+  // Este es el ÚNICO valor que cambia entre una landing y otra
+  // cuando dupliques este proyecto para una tienda nueva.
+  // Debe coincidir EXACTO con el "slug" que creaste en la tabla
+  // `tiendas` de Supabase. Para esta landing (la original) es:
+  // ----------------------------------------------------------
+  TIENDA_SLUG: "mrbarril",
+
+  // ----------------------------------------------------------
   // 1. SUPABASE
   // ----------------------------------------------------------
   // Cómo obtenerlos:

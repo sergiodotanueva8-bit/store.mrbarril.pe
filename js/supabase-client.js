@@ -17,6 +17,7 @@ const SupabaseCliente = (function () {
 
   let cliente = null;
   let inicializado = false;
+  let tiendaIdCache = null;
 
   function estaConfigurado() {
     return (
@@ -80,6 +81,40 @@ const SupabaseCliente = (function () {
   }
 
   /**
+   * Resuelve el UUID de la tienda actual a partir de CONFIG.TIENDA_SLUG,
+   * consultando la tabla `tiendas`. Se cachea en memoria durante la
+   * visita para no repetir la consulta en cada evento/pedido.
+   */
+  async function resolverTiendaId() {
+    if (tiendaIdCache) return tiendaIdCache;
+
+    const db = inicializar();
+    if (!db) return null;
+
+    try {
+      const { data, error } = await db
+        .from("tiendas")
+        .select("id")
+        .eq("slug", CONFIG.TIENDA_SLUG)
+        .single();
+
+      if (error || !data) {
+        console.error(
+          "[Supabase] No se encontró la tienda con slug '" + CONFIG.TIENDA_SLUG +
+          "'. Verifica que exista una fila en la tabla `tiendas` con ese slug."
+        );
+        return null;
+      }
+
+      tiendaIdCache = data.id;
+      return tiendaIdCache;
+    } catch (error) {
+      console.error("[Supabase] Error resolviendo tienda_id:", error);
+      return null;
+    }
+  }
+
+  /**
    * Guarda un pedido en la tabla `pedidos`.
    * Devuelve { ok: true } o { ok: false, error }
    */
@@ -89,10 +124,16 @@ const SupabaseCliente = (function () {
       return { ok: false, error: "Supabase no configurado", omitido: true };
     }
 
+    const tiendaId = await resolverTiendaId();
+    if (!tiendaId) {
+      return { ok: false, error: "No se pudo resolver tienda_id" };
+    }
+
     try {
       const utms = obtenerUTMs();
       const { error } = await db.from("pedidos").insert([
         {
+          tienda_id: tiendaId,
           tipo_envio: datosPedido.tipoEnvio,
           nombre_completo: datosPedido.nombreCompleto,
           whatsapp: datosPedido.whatsapp,
@@ -107,7 +148,8 @@ const SupabaseCliente = (function () {
           precio_unitario: datosPedido.precioUnitario,
           costo_instalacion: datosPedido.costoInstalacion || 0,
           total_pagar: datosPedido.totalPagar,
-          mensaje_whatsapp: datosPedido.mensajeWhatsapp || null,
+          mensaje_whatsapp_corto: datosPedido.mensajeWhatsappCorto || null,
+          mensaje_pedido_completo: datosPedido.mensajePedidoCompleto || null,
           ...utms,
         },
       ]);

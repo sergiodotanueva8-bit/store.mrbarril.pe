@@ -23,8 +23,8 @@ const CONFIG = {
   // IMPORTANTE: usa siempre la clave "anon public", NUNCA la
   // "service_role" (esa es secreta y no debe ir en el navegador).
   // ----------------------------------------------------------
-  SUPABASE_URL: https://czgenwnmyzjqyjkvvjrr.supabase.co,
-  SUPABASE_ANON_KEY: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN6Z2Vud25teXpqcXlqa3Z2anJyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4MTcwOTUsImV4cCI6MjA5NzM5MzA5NX0.pVfbYZSELN1KfhpxikAwk8vNUFA-cP4_lQm0eMm14-M,
+  SUPABASE_URL: "https://czgenwnmyzjqyjkvvjrr.supabase.co",
+  SUPABASE_ANON_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN6Z2Vud25teXpqcXlqa3Z2anJyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODE4MTcwOTUsImV4cCI6MjA5NzM5MzA5NX0.pVfbYZSELN1KfhpxikAwk8vNUFA-cP4_lQm0eMm14-M",
 
   // ----------------------------------------------------------
   // 2. WHATSAPP DE VENTAS

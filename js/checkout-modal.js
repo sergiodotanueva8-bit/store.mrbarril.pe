@@ -254,7 +254,10 @@ const CheckoutModal = (function () {
   // ----------------------------------------------------------
   // Envío del formulario
   // ----------------------------------------------------------
-  async function confirmarPedido() {
+  function confirmarPedido() {
+    // NOTA: función NO async intencionalmente.
+    // iOS Safari bloquea window.open() si se llama después de cualquier await.
+    // Todo lo async (Supabase, pixels) se ejecuta DESPUÉS de abrir WhatsApp.
     if (enviando) return;
 
     SupabaseCliente.registrarEvento("click_confirmar_pedido", { tipo_envio: tipoEnvioActual });
@@ -299,31 +302,36 @@ const CheckoutModal = (function () {
     const mensajeWhatsapp = armarMensajeWhatsapp(datos, resumen);
     datos.mensajeWhatsapp = mensajeWhatsapp;
 
-    // 1) Guardar en Supabase (pedido) — no bloquea el flujo si falla
-    const resultadoGuardado = await SupabaseCliente.guardarPedido(datos);
-    if (!resultadoGuardado.ok && !resultadoGuardado.omitido) {
-      console.error("No se pudo guardar el pedido en Supabase, pero se continuará a WhatsApp.");
-    }
-
-    // 2) Disparar evento de conversión en los pixels
-    Pixels.dispararEvento("Purchase", "CompletePayment", {
-      value: resumen.total,
-      currency: "PEN",
-    });
-
-    // 3) Redirigir a WhatsApp con el mensaje armado
+    // ── PASO 1: Abrir WhatsApp INMEDIATAMENTE (respuesta directa al tap del usuario) ──
+    // iOS Safari solo permite window.open() en el mismo tick del gesto.
+    // Cualquier await antes de esto lo bloquea sin aviso.
     const numeroWhatsapp = CONFIG.WHATSAPP_NUMERO.replace(/\D/g, "");
     const urlWhatsapp =
       "https://wa.me/" + numeroWhatsapp + "?text=" + encodeURIComponent(mensajeWhatsapp);
+    window.open(urlWhatsapp, "_blank");
 
+    // ── PASO 2: Mostrar pantalla de éxito ──
     mostrarExito();
 
+    // ── PASO 3: Operaciones async en segundo plano (ya no bloquean WhatsApp) ──
     setTimeout(function () {
-      window.open(urlWhatsapp, "_blank");
+      // Guardar en Supabase
+      SupabaseCliente.guardarPedido(datos).then(function (resultado) {
+        if (!resultado.ok && !resultado.omitido) {
+          console.error("No se pudo guardar el pedido en Supabase.");
+        }
+      });
+
+      // Disparar evento de conversión en pixels
+      Pixels.dispararEvento("Purchase", "CompletePayment", {
+        value: resumen.total,
+        currency: "PEN",
+      });
+
       enviando = false;
       boton.disabled = false;
       boton.innerHTML = textoOriginal;
-    }, 900);
+    }, 500);
   }
 
   // ----------------------------------------------------------

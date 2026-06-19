@@ -38,7 +38,7 @@ const CONFIG = {
   // ----------------------------------------------------------
   // 3. DATOS DEL PRODUCTO Y PRECIOS
   // ----------------------------------------------------------
-  PRODUCTO_NOMBRE: "Tendedero Plegable 5 Líneas",
+  PRODUCTO_NOMBRE: "Tendedero Plegable 6 Filas",
   PRECIO_REGULAR: 150.00,
   PRECIO_TACHADO: 200.00,
   COSTO_INSTALACION_LIMA: 50.00,

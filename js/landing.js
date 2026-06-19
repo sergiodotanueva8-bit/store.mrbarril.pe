@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const elementosTexto = document.querySelectorAll("[data-stock-texto]");
     const elementosBarra = document.querySelectorAll("[data-stock-barra]");
-    const STOCK_MAXIMO_VISUAL = 10;
+    const STOCK_MAXIMO_VISUAL = 12;
     const porcentaje = Math.max(5, Math.min(100, (unidades / STOCK_MAXIMO_VISUAL) * 100));
 
     elementosTexto.forEach(function (el) {

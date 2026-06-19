@@ -79,10 +79,55 @@ document.addEventListener("DOMContentLoaded", function () {
       opcion.classList.add("seleccionada");
       cantidadSeleccionada = parseInt(opcion.getAttribute("data-cantidad"), 10) || 1;
       window.cantidadSeleccionadaGlobal = cantidadSeleccionada;
+
+      // ---- Sincronizar barra fija inferior ----
+      actualizarBarraFija(cantidadSeleccionada);
     });
   });
 
   window.cantidadSeleccionadaGlobal = cantidadSeleccionada;
+
+  // ----------------------------------------------------------
+  // BARRA FIJA: actualiza precio y nombre según cantidad
+  // ----------------------------------------------------------
+  function actualizarBarraFija(cantidad) {
+    var precioUnit = obtenerPrecioUnitarioPorCantidad(cantidad);
+    var total = precioUnit * cantidad;
+
+    // Nombre del producto
+    var nombreEl = document.getElementById("barra-fija-nombre");
+    if (nombreEl) {
+      if (cantidad === 1) {
+        nombreEl.textContent = CONFIG.PRODUCTO_NOMBRE;
+      } else {
+        nombreEl.textContent = CONFIG.PRODUCTO_NOMBRE + " x" + cantidad;
+      }
+    }
+
+    // Precio
+    var precioEl = document.getElementById("barra-fija-precio");
+    if (precioEl) {
+      precioEl.textContent = "S/ " + total.toFixed(2);
+    }
+
+    // Badge descuento
+    var badgeEl = document.getElementById("barra-fija-badge");
+    if (badgeEl) {
+      if (cantidad === 2) {
+        badgeEl.textContent = "-20 SOLES";
+        badgeEl.style.display = "inline";
+      } else if (cantidad === 3) {
+        badgeEl.textContent = "-30 SOLES";
+        badgeEl.style.display = "inline";
+      } else {
+        badgeEl.textContent = "-25%";
+        badgeEl.style.display = "inline";
+      }
+    }
+  }
+
+  // Inicializar barra fija con valores por defecto
+  actualizarBarraFija(cantidadSeleccionada);
 
   // ----------------------------------------------------------
   // CONTADOR DE STOCK DINÁMICO (lee de Supabase si está activado)

@@ -5,35 +5,51 @@
    ============================================================ */
 
 /* ============================================================
-   BARRA SUPERIOR DE CONFIANZA
+   BARRA SUPERIOR DE CONFIANZA — TICKER ANIMADO
    ============================================================ */
 .barra-confianza {
   background: #111111;
   color: #ffffff;
   padding: 8px 0;
   font-size: 11px;
+  overflow: hidden;
 }
 
-.barra-confianza .contenedor {
-  display: flex;
-  justify-content: flex-start;
+.barra-confianza__ticker-wrap {
+  overflow: hidden;
+  width: 100%;
+}
+
+.barra-confianza__ticker {
+  display: inline-flex;
   align-items: center;
-  gap: 16px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  -webkit-overflow-scrolling: touch;
+  gap: 0;
+  white-space: nowrap;
+  animation: ticker-scroll 22s linear infinite;
+  will-change: transform;
 }
 
-.barra-confianza .contenedor::-webkit-scrollbar {
-  display: none;
+.barra-confianza__ticker:hover {
+  animation-play-state: paused;
+}
+
+@keyframes ticker-scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .barra-confianza__item {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 5px;
   white-space: nowrap;
+  padding: 0 16px;
+}
+
+.barra-confianza__sep {
+  color: #ffffff44;
   flex-shrink: 0;
+  padding: 0 4px;
 }
 
 .barra-confianza__estrellas {
@@ -46,12 +62,8 @@
     padding: 10px 0;
     font-size: 13px;
   }
-  .barra-confianza .contenedor {
-    justify-content: center;
-    gap: 28px;
-    overflow-x: visible;
-  }
 }
+
 
 /* ============================================================
    LAYOUT PRINCIPAL DEL PRODUCTO

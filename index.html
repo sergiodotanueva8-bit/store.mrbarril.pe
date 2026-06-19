@@ -26,13 +26,26 @@
        BARRA SUPERIOR DE CONFIANZA
        ============================================================ -->
   <div class="barra-confianza">
-    <div class="contenedor">
-      <span class="barra-confianza__item">🚚 Envíos rápidos a todo el Perú</span>
-      <span class="barra-confianza__item">🛡️ Pago contra entrega</span>
-      <span class="barra-confianza__item">✅ Garantía de 30 días</span>
-      <span class="barra-confianza__item">
-        <span class="barra-confianza__estrellas">★★★★★</span> +10,000 clientes satisfechos
-      </span>
+    <div class="barra-confianza__ticker-wrap">
+      <div class="barra-confianza__ticker">
+        <span class="barra-confianza__item">🚚 Envíos rápidos a todo el Perú</span>
+        <span class="barra-confianza__sep">•</span>
+        <span class="barra-confianza__item">🛡️ Pago contra entrega</span>
+        <span class="barra-confianza__sep">•</span>
+        <span class="barra-confianza__item">✅ Garantía de 30 días</span>
+        <span class="barra-confianza__sep">•</span>
+        <span class="barra-confianza__item"><span class="barra-confianza__estrellas">★★★★★</span> +10,000 clientes satisfechos</span>
+        <span class="barra-confianza__sep">•</span>
+        <!-- Duplicado para loop continuo sin saltos -->
+        <span class="barra-confianza__item">🚚 Envíos rápidos a todo el Perú</span>
+        <span class="barra-confianza__sep">•</span>
+        <span class="barra-confianza__item">🛡️ Pago contra entrega</span>
+        <span class="barra-confianza__sep">•</span>
+        <span class="barra-confianza__item">✅ Garantía de 30 días</span>
+        <span class="barra-confianza__sep">•</span>
+        <span class="barra-confianza__item"><span class="barra-confianza__estrellas">★★★★★</span> +10,000 clientes satisfechos</span>
+        <span class="barra-confianza__sep">•</span>
+      </div>
     </div>
   </div>
 
@@ -470,12 +483,12 @@
   <div class="barra-fija-inferior" id="barra-fija-inferior">
     <div class="contenedor">
       <div class="barra-fija-inferior__producto">
-        <img src="assets/images/miniatura-1-logo.jpg" alt="Tendedero Plegable 5 Líneas"  loading="lazy" />
+        <img src="assets/images/miniatura-1-logo.jpg" alt="Tendedero Plegable 6 Filas"  loading="lazy" />
         <div>
-          <div class="barra-fija-inferior__nombre">Tendedero Plegable 6 Filas</div>
+          <div class="barra-fija-inferior__nombre" id="barra-fija-nombre">Tendedero Plegable 6 Filas</div>
           <div class="barra-fija-inferior__precio">
-            <strong>S/ 150.00</strong> <span class="precio-tachado">S/ 200.00</span>
-            <span class="badge-descuento">-25%</span>
+            <strong id="barra-fija-precio">S/ 150.00</strong> <span class="precio-tachado">S/ 200.00</span>
+            <span class="badge-descuento" id="barra-fija-badge">-25%</span>
           </div>
         </div>
       </div>
@@ -651,9 +664,9 @@
               Puede ser la misma imagen del hero, recortada a 4:3,
               optimizada para verse pequeña dentro del resumen.
             -->
-            <img src="assets/images/producto-hero-principal.jpg" alt="Tendedero Plegable 5 Líneas" class="resumen-pedido__producto-img"  loading="lazy" />
-            <div class="resumen-pedido__nombre">Tendedero Plegable 5 Líneas</div>
-            <div class="resumen-pedido__precio">S/ 89.00</div>
+            <img src="assets/images/producto-hero-principal.jpg" alt="Tendedero Plegable 6 Filas" class="resumen-pedido__producto-img"  loading="lazy" />
+            <div class="resumen-pedido__nombre" id="resumen-producto-nombre">Tendedero Plegable 6 Filas</div>
+            <div class="resumen-pedido__precio" id="resumen-producto-precio-unitario">S/ 150.00</div>
 
             <div class="resumen-pedido__titulo">Resumen de tu pedido</div>
             <div class="resumen-pedido__linea">

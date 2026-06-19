@@ -107,6 +107,22 @@ const CheckoutModal = (function () {
 
     const total = subtotalProducto + costoInstalacion;
 
+    // Actualizar nombre del producto en la cabecera del resumen
+    const nombreResumen = $("#resumen-producto-nombre");
+    if (nombreResumen) {
+      nombreResumen.textContent = CONFIG.PRODUCTO_NOMBRE;
+    }
+
+    // Actualizar precio unitario grande (el que aparece destacado arriba del resumen)
+    const precioResumen = $("#resumen-producto-precio-unitario");
+    if (precioResumen) {
+      if (cantidadActual === 1) {
+        precioResumen.textContent = formatearMoneda(precioUnitario);
+      } else {
+        precioResumen.textContent = formatearMoneda(precioUnitario) + " c/u";
+      }
+    }
+
     $("#resumen-linea-producto-cantidad").textContent =
       CONFIG.PRODUCTO_NOMBRE + " (" + cantidadActual + (cantidadActual === 1 ? " unidad)" : " unidades)");
     $("#resumen-linea-producto-precio").textContent = formatearMoneda(subtotalProducto);

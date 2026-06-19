@@ -44,8 +44,8 @@ const CONFIG = {
   COSTO_INSTALACION_LIMA: 50.00,
 
   // Precios por cantidad (usado en la sección de descuentos por volumen)
-  PRECIO_X2_UNIDAD: 280,   // -20% dscto. (precio por unidad llevando 2)
-  PRECIO_X3_UNIDAD: 420,   // -25% dscto. (precio por unidad llevando 3)
+  PRECIO_X2_UNIDAD: 140,   // -20% dscto. (precio por unidad llevando 2)
+  PRECIO_X3_UNIDAD: 135,   // -25% dscto. (precio por unidad llevando 3)
 
   // ----------------------------------------------------------
   // 4. STOCK / URGENCIA

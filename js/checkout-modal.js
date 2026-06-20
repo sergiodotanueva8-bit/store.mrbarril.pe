@@ -269,9 +269,6 @@ const CheckoutModal = (function () {
   // Envío del formulario
   // ----------------------------------------------------------
   function confirmarPedido() {
-    // NOTA: función NO async intencionalmente.
-    // iOS Safari bloquea window.open() si se llama después de cualquier await.
-    // Todo lo async (Supabase, pixels) se ejecuta DESPUÉS de abrir WhatsApp.
     if (enviando) return;
 
     SupabaseCliente.registrarEvento("click_confirmar_pedido", { tipo_envio: tipoEnvioActual });
@@ -318,36 +315,28 @@ const CheckoutModal = (function () {
     datos.mensajeWhatsappCorto = mensajeCorto;
     datos.mensajePedidoCompleto = mensajeCompleto;
 
-    // ── PASO 1: Abrir WhatsApp INMEDIATAMENTE (respuesta directa al tap del usuario) ──
-    // iOS Safari solo permite window.open() en el mismo tick del gesto.
-    // Cualquier await antes de esto lo bloquea sin aviso.
-    const numeroWhatsapp = CONFIG.WHATSAPP_NUMERO.replace(/\D/g, "");
-    const urlWhatsapp =
-      "https://wa.me/" + numeroWhatsapp + "?text=" + encodeURIComponent(mensajeCorto);
-    window.open(urlWhatsapp, "_blank");
-
-    // ── PASO 2: Mostrar pantalla de éxito ──
+    // ── Mostrar pantalla de éxito INMEDIATAMENTE ──
+    // Ya NO se abre WhatsApp automáticamente. El pedido queda confirmado
+    // en la landing y el vendedor le escribe desde la app admin (usando
+    // mensaje_pedido_completo, que se guarda abajo en Supabase).
     mostrarExito();
 
-    // ── PASO 3: Operaciones async en segundo plano (ya no bloquean WhatsApp) ──
-    setTimeout(function () {
-      // Guardar en Supabase
-      SupabaseCliente.guardarPedido(datos).then(function (resultado) {
-        if (!resultado.ok && !resultado.omitido) {
-          console.error("No se pudo guardar el pedido en Supabase.");
-        }
-      });
+    // Guardar en Supabase (en segundo plano, no bloquea la UI)
+    SupabaseCliente.guardarPedido(datos).then(function (resultado) {
+      if (!resultado.ok && !resultado.omitido) {
+        console.error("No se pudo guardar el pedido en Supabase.");
+      }
+    });
 
-      // Disparar evento de conversión en pixels
-      Pixels.dispararEvento("Purchase", "CompletePayment", {
-        value: resumen.total,
-        currency: "PEN",
-      });
+    // Disparar evento de conversión en pixels
+    Pixels.dispararEvento("Purchase", "CompletePayment", {
+      value: resumen.total,
+      currency: "PEN",
+    });
 
-      enviando = false;
-      boton.disabled = false;
-      boton.innerHTML = textoOriginal;
-    }, 500);
+    enviando = false;
+    boton.disabled = false;
+    boton.innerHTML = textoOriginal;
   }
 
   // ----------------------------------------------------------
@@ -385,6 +374,20 @@ const CheckoutModal = (function () {
     const checkboxInstalacion = document.getElementById("campo-agrega-instalacion");
     if (checkboxInstalacion) {
       checkboxInstalacion.addEventListener("change", actualizarResumen);
+    }
+
+    // Checkbox "vista" de la tarjeta de instalación (fuera del formulario):
+    // se mantiene sincronizado con el checkbox real del formulario en ambas
+    // direcciones, para que marcar cualquiera de los dos actualice el otro.
+    const checkboxInstalacionVista = document.getElementById("campo-agrega-instalacion-vista");
+    if (checkboxInstalacionVista && checkboxInstalacion) {
+      checkboxInstalacionVista.addEventListener("change", function () {
+        checkboxInstalacion.checked = checkboxInstalacionVista.checked;
+        actualizarResumen();
+      });
+      checkboxInstalacion.addEventListener("change", function () {
+        checkboxInstalacionVista.checked = checkboxInstalacion.checked;
+      });
     }
 
     // Botón confirmar

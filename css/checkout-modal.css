@@ -561,28 +561,62 @@
 .modal-checkout__exito {
   display: none;
   text-align: center;
-  padding: 60px 10px;
+  padding: 56px 20px 40px;
 }
 
 .modal-checkout__exito.visible {
   display: block;
+  animation: exito-aparecer 0.35s ease;
+}
+
+@keyframes exito-aparecer {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 .modal-checkout__exito-icono {
-  font-size: 44px;
-  margin-bottom: 14px;
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 18px;
+  border-radius: 50%;
+  background: var(--color-verde-claro);
+  color: var(--color-verde);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
 }
 
 .modal-checkout__exito-titulo {
-  font-size: 19px;
+  font-size: 21px;
   font-weight: 800;
-  margin-bottom: 8px;
+  margin-bottom: 10px;
+  color: var(--color-texto);
 }
 
 .modal-checkout__exito-texto {
-  font-size: 13px;
+  font-size: 14px;
+  line-height: 1.5;
   color: var(--color-texto-secundario);
-  margin-bottom: 20px;
+  max-width: 360px;
+  margin: 0 auto 24px;
+}
+
+.modal-checkout__exito-cerrar {
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 8px;
+  background: var(--color-naranja);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.modal-checkout__exito-cerrar:hover {
+  background: var(--color-naranja-hover);
 }
 
 [data-seccion-envio] {

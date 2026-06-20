@@ -130,24 +130,27 @@ document.addEventListener("DOMContentLoaded", function () {
   actualizarBarraFija(cantidadSeleccionada);
 
   // ----------------------------------------------------------
-  // CONTADOR DE STOCK DINÁMICO (lee de Supabase si está activado)
+  // CONTADOR DE STOCK — 100% SIMULADO (decorativo, genera urgencia)
   // ----------------------------------------------------------
-  async function actualizarContadorStock() {
-    let unidades = CONFIG.STOCK_FIJO_RESPALDO;
+  // Ya NO se lee de Supabase. Arranca en STOCK_SIMULADO_INICIAL y
+  // va variando solo de a poquitos (nunca saltos bruscos, nunca
+  // llega a 0). Cada visitante ve su propia simulación independiente.
+  // ----------------------------------------------------------
+  const STOCK_SIMULADO_INICIAL = 32;
+  const STOCK_SIMULADO_MINIMO = 6;   // nunca baja de aquí (genera urgencia sin asustar)
+  const STOCK_SIMULADO_MAXIMO = 32;  // nunca sube más que el inicial
+  const STOCK_MAXIMO_VISUAL = STOCK_SIMULADO_MAXIMO; // referencia para el ancho de la barra
 
-    if (CONFIG.STOCK_DESDE_SUPABASE) {
-      const stockReal = await SupabaseCliente.obtenerStockActual();
-      if (typeof stockReal === "number") {
-        unidades = stockReal;
-      }
-    }
+  let stockSimuladoActual = STOCK_SIMULADO_INICIAL;
+  // Sesgo hacia abajo: la mayoría de los movimientos restan, generando
+  // la sensación de "se está agotando", pero a veces sube un poco
+  // (simulando que llegó reposición o que alguien canceló).
+  let tendenciaBajando = true;
 
-    const elementosTexto = document.querySelectorAll("[data-stock-texto]");
-    const elementosBarra = document.querySelectorAll("[data-stock-barra]");
-    const STOCK_MAXIMO_VISUAL = 12;
+  function pintarStock(unidades) {
     const porcentaje = Math.max(5, Math.min(100, (unidades / STOCK_MAXIMO_VISUAL) * 100));
 
-    elementosTexto.forEach(function (el) {
+    document.querySelectorAll("[data-stock-texto]").forEach(function (el) {
       el.textContent = "¡SOLO QUEDAN " + unidades + " UNIDADES!";
     });
 
@@ -155,12 +158,50 @@ document.addEventListener("DOMContentLoaded", function () {
       el.textContent = unidades;
     });
 
-    elementosBarra.forEach(function (el) {
+    document.querySelectorAll("[data-stock-barra]").forEach(function (el) {
       el.style.width = porcentaje + "%";
     });
   }
 
-  actualizarContadorStock();
+  function siguientePasoStock() {
+    // Si toca el piso o el techo, invierte la tendencia.
+    if (stockSimuladoActual <= STOCK_SIMULADO_MINIMO) tendenciaBajando = false;
+    if (stockSimuladoActual >= STOCK_SIMULADO_MAXIMO) tendenciaBajando = true;
+
+    // 75% de probabilidad de seguir la tendencia actual, 25% de
+    // quedarse igual ese tick (para que no se sienta mecánico).
+    const azar = Math.random();
+    let delta = 0;
+    if (azar < 0.75) {
+      delta = tendenciaBajando ? -1 : 1;
+    }
+    // Pequeña chance de revertir la tendencia incluso sin tocar los límites,
+    // simulando variación natural (alguien compró, llegó reposición, etc.)
+    if (Math.random() < 0.08) tendenciaBajando = !tendenciaBajando;
+
+    stockSimuladoActual = Math.max(
+      STOCK_SIMULADO_MINIMO,
+      Math.min(STOCK_SIMULADO_MAXIMO, stockSimuladoActual + delta)
+    );
+
+    pintarStock(stockSimuladoActual);
+  }
+
+  function iniciarContadorStockSimulado() {
+    pintarStock(stockSimuladoActual);
+    // Cambia cada 7-15 segundos (aleatorio), para que no se sienta
+    // como un timer mecánico de intervalo fijo.
+    function programarSiguiente() {
+      const espera = 7000 + Math.random() * 8000;
+      setTimeout(function () {
+        siguientePasoStock();
+        programarSiguiente();
+      }, espera);
+    }
+    programarSiguiente();
+  }
+
+  iniciarContadorStockSimulado();
 
   // ----------------------------------------------------------
   // BARRA FIJA INFERIOR: aparece después de hacer scroll

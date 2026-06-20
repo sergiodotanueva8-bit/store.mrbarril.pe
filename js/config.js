@@ -60,12 +60,14 @@ const CONFIG = {
   // ----------------------------------------------------------
   // 4. STOCK / URGENCIA
   // ----------------------------------------------------------
-  // Si STOCK_DESDE_SUPABASE es true, el número de "unidades
-  // restantes" se lee en vivo desde la tabla `stock` de Supabase
-  // y se descuenta automáticamente con cada pedido confirmado.
-  // Si lo pones en false, se usa el número fijo de abajo.
-  STOCK_DESDE_SUPABASE: true,
-  STOCK_FIJO_RESPALDO: 12,
+  // El contador de "unidades restantes" en la landing es 100%
+  // SIMULADO (decorativo) — ya NO se lee de la tabla `stock` de
+  // Supabase. Arranca en 32 y fluctúa solo de a poquitos para
+  // generar sensación de escasez, sin depender del inventario real.
+  // Si quieres ajustar el valor inicial, el mínimo o el máximo,
+  // edita las constantes STOCK_SIMULADO_* directamente en
+  // js/landing.js (función iniciarContadorStockSimulado).
+  // ----------------------------------------------------------
 
   // ----------------------------------------------------------
   // 5. ANALYTICS / TRACKING (opcional)

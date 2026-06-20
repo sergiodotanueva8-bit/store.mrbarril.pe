@@ -3,12 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!--
+    ⚠️ IMPORTANTE: estas etiquetas (title, description, og:*) son LEÍDAS
+    POR WHATSAPP/FACEBOOK/REDES directamente del HTML estático — esas
+    plataformas no ejecutan JavaScript, así que NO pueden generarse
+    dinámicamente desde config.js. Si cambias PRODUCTO_NOMBRE o la
+    descripción del producto en js/config.js, TIENES QUE actualizar
+    también estas líneas a mano para que coincidan.
+
+    Después de editar, si compartes el link y sigue saliendo la versión
+    vieja, es por caché de WhatsApp/Facebook — fuerza el refresh en:
+    https://developers.facebook.com/tools/debug/ (pega tu URL → "Scrape Again")
+  -->
   <title>Tendedero Plegable 6 Filas | Envío y Pago Contraentrega a Todo el Perú</title>
-  <meta name="description" content="Tendedero plegable de 5 líneas, soporta hasta 150kg, fácil instalación. Pago contra entrega, envíos a todo el Perú. ¡Oferta por tiempo limitado!" />
+  <meta name="description" content="Tendedero plegable de 6 filas, soporta hasta 150kg, fácil instalación. Pago contra entrega, envíos a todo el Perú. ¡Oferta por tiempo limitado!" />
 
   <!-- Open Graph (para que se vea bien al compartir en redes / WhatsApp) -->
-  <meta property="og:title" content="Tendedero Plegable 5 Líneas" />
-  <meta property="og:description" content="Más espacio para tender, cuando lo necesitas. Soporta hasta 150kg. Envío gratis a todo el Perú." />
+  <meta property="og:title" content="Tendedero Plegable 6 Filas" />
+  <meta property="og:description" content="Más espacio para tender, cuando lo necesitas. 6 filas, soporta hasta 150kg. Envío gratis a todo el Perú." />
   <meta property="og:image" content="assets/images/producto-hero-principal.jpg" />
   <meta property="og:type" content="product" />
 
@@ -64,7 +76,7 @@
       <section class="galeria" aria-label="Galería de imágenes del producto">
         <div class="galeria__badges">
           <span class="badge-oferta">🔥 OFERTA POR TIEMPO LIMITADO</span>
-          <span class="badge-solo-hoy">⚡ SOLO POR HOY</span>
+          <span class="badge-envio">🚚 ENVÍO GRATIS A TODO EL PERÚ · PAGO CONTRAENTREGA</span>
         </div>
 
         <div class="galeria__principal-wrap">
@@ -199,17 +211,35 @@
         </div>
 
         <ul class="info-compra__beneficios">
-          <li>Ahorra espacio en tu hogar</li>
-          <li>Estructura reforzada, Soporta hasta 120KG de peso</li>
-          <li>Ideal para interiores y exteriores</li>
-          <li>NO SE OXIDA NI SE PELA</li>
-          <li>Fácil instalación con tornillos incluidos</li>
-            <li>25 metros de Cable de Acero Inoxidable Recubierto de PVC</li>
-            <li>Tarugos</li>
-            <li>Tirafones</li>
-            <li>Wachas</li>
-            <li>Candados</li>
+          <li><span class="info-compra__beneficio-icono">📏</span><span>Ahorra espacio en tu hogar</span></li>
+          <li>
+            <span class="info-compra__beneficio-icono">💪</span>
+            <span>
+              <span class="info-compra__beneficio-titulo">Estructura reforzada</span>
+              <span class="info-compra__beneficio-sub">Soporta hasta 120 KG de peso</span>
+            </span>
+          </li>
+          <li><span class="info-compra__beneficio-icono">🛡️</span><span>No se oxida ni se pela</span></li>
+          <li><span class="info-compra__beneficio-icono">🏠</span><span>Ideal para interiores y exteriores</span></li>
+          <li>
+            <span class="info-compra__beneficio-icono">🔧</span>
+            <span>
+              <span class="info-compra__beneficio-titulo">Fácil instalación</span>
+              <span class="info-compra__beneficio-sub">Tornillos incluidos, sin herramientas complicadas</span>
+            </span>
+          </li>
         </ul>
+
+        <div class="info-compra__incluye">
+          <div class="info-compra__incluye-titulo">Incluye todo lo necesario</div>
+          <div class="info-compra__incluye-chips">
+            <span class="chip-incluye">🧵 25m cable de acero inoxidable</span>
+            <span class="chip-incluye">🔩 Tarugos</span>
+            <span class="chip-incluye">🔩 Tirafones</span>
+            <span class="chip-incluye">⚙️ Wachas</span>
+            <span class="chip-incluye">🔒 Candados</span>
+          </div>
+        </div>
 
         <div class="alerta-stock">
           <div class="alerta-stock__texto">
@@ -312,46 +342,37 @@
          ============================================================ -->
     <div class="seccion-instalacion">
       <!--
-        IMAGEN: icono-tecnico-instalador.png
-        Tamaño recomendado: 240x240 px (cuadrada, fondo transparente)
-        Formato: PNG con transparencia
-        Debe mostrar: silueta o ilustración de un técnico con taladro,
-        estilo flat/silueta como en el diseño de referencia.
+        IMAGEN: tecnico-instalando.jpg
+        Tamaño recomendado: 320x400 px (vertical, relación ~4:5)
+        Formato: JPG, foto real de un técnico instalando el producto
+        (o ilustración estilo flat si no tienes foto real todavía).
+        Se muestra recortada como columna lateral de la tarjeta.
       -->
       <img
-        src="assets/images/icono-tecnico-instalador.png"
-        alt="Técnico instalador profesional"
-        class="seccion-instalacion__icono"
+        src="assets/images/tecnico-instalando.jpg"
+        alt="Técnico instalando el tendedero"
+        class="seccion-instalacion__foto"
        loading="lazy" />
 
-      <div>
-        <h2 class="seccion-instalacion__titulo">¿Quieres instalación en <span>Lima</span>?</h2>
-        <p class="seccion-instalacion__subtitulo">Servicio profesional, rápido y seguro.</p>
-        <ul class="seccion-instalacion__lista">
-          <li>Instalación realizada por técnicos expertos</li>
-          <li>Herramientas y fijaciones incluidas</li>
-          <li>Garantía en la instalación</li>
-        </ul>
-        <div class="seccion-instalacion__zona">📍 Disponible solo para Lima Metropolitana</div>
-      </div>
+      <div class="seccion-instalacion__contenido">
+        <h2 class="seccion-instalacion__titulo">Instalación en <span>Lima</span></h2>
+        <p class="seccion-instalacion__subtitulo">Profesional, rápida y segura</p>
 
-      <div class="seccion-instalacion__precio-box">
-        <div class="seccion-instalacion__precio">S/ 50.00</div>
-        <div class="seccion-instalacion__precio-label">Servicio Opcional</div>
-      </div>
+        <div class="seccion-instalacion__chips">
+          <span class="seccion-instalacion__chip">✓ Técnicos expertos</span>
+          <span class="seccion-instalacion__chip">✓ Herramientas incluidas</span>
+          <span class="seccion-instalacion__chip">✓ Con garantía</span>
+        </div>
 
-      <div class="seccion-instalacion__incluye">
-        <!--
-          IMAGEN: tornillos-tarugos-incluidos.png
-          Tamaño recomendado: 180x180 px (cuadrada, fondo transparente o blanco)
-          Formato: PNG o JPG
-          Debe mostrar: tornillos y tarugos (los accesorios de instalación)
-        -->
-        <img src="assets/images/tornillos-tarugos-incluidos.png" alt="Tornillos y tarugos incluidos"  loading="lazy" />
-        <p>
-          Enviamos todos los accesorios para que puedas realizar la instalación fácilmente por tu cuenta.<br />
-          <strong>Incluye:</strong> Tornillos, tarugos y manual de instalación.
-        </p>
+        <div class="seccion-instalacion__pie">
+          <span class="seccion-instalacion__precio">S/ 50.00</span>
+          <span class="seccion-instalacion__precio-label">Opcional · solo Lima</span>
+        </div>
+
+        <label class="seccion-instalacion__agregar" for="campo-agrega-instalacion-vista">
+          <input type="checkbox" id="campo-agrega-instalacion-vista" />
+          <span>Agregar instalación a mi pedido</span>
+        </label>
       </div>
     </div>
   </main>
@@ -670,7 +691,7 @@
 
             <div class="resumen-pedido__titulo">Resumen de tu pedido</div>
             <div class="resumen-pedido__linea">
-              <span id="resumen-linea-producto-cantidad">Tendedero Plegable 5 Líneas (1 unidad)</span>
+              <span id="resumen-linea-producto-cantidad">Tendedero Plegable 6 Filas (1 unidad)</span>
               <span id="resumen-linea-producto-precio">S/ 89.00</span>
             </div>
             <div class="resumen-pedido__linea" id="resumen-linea-instalacion">
@@ -698,8 +719,8 @@
               <div class="resumen-pedido__garantia">
                 <span class="resumen-pedido__garantia-icono">🚚</span>
                 <div>
-                  <span class="resumen-pedido__garantia-titulo">Envíos a todo el Perú</span>
-                  <span class="resumen-pedido__garantia-texto">Rápidos y seguros</span>
+                  <span class="resumen-pedido__garantia-titulo">Envío gratis a todo el Perú</span>
+                  <span class="resumen-pedido__garantia-texto">Rápido y seguro, sin costo extra</span>
                 </div>
               </div>
               <div class="resumen-pedido__garantia">
@@ -714,8 +735,8 @@
         </div>
 
         <button class="btn-confirmar-pedido" id="btn-confirmar-pedido">
-          <span>📱 CONFIRMAR PEDIDO POR WHATSAPP</span>
-          <span class="btn-confirmar-pedido__sub">Te redirigiremos a WhatsApp para coordinar tu pedido</span>
+          <span>✅ CONFIRMAR PEDIDO</span>
+          <span class="btn-confirmar-pedido__sub">Te contactaremos para coordinar la entrega</span>
         </button>
 
         <div class="modal-checkout__privacidad">
@@ -725,11 +746,12 @@
 
       <!-- ---- Pantalla de éxito ---- -->
       <div class="modal-checkout__exito" id="modal-checkout-exito">
-        <div class="modal-checkout__exito-icono">✅</div>
-        <div class="modal-checkout__exito-titulo">¡Pedido registrado!</div>
+        <div class="modal-checkout__exito-icono">✓</div>
+        <div class="modal-checkout__exito-titulo">¡Gracias por tu compra!</div>
         <div class="modal-checkout__exito-texto">
-          Tu pedido fue confirmado correctamente. En breve te llegará el detalle completo de tu compra por WhatsApp.
+          Tu pedido fue registrado con éxito. Ya lo estamos alistando para enviártelo y en breve uno de nuestros asesores se pondrá en contacto contigo para confirmar los detalles de la entrega.
         </div>
+        <button type="button" class="modal-checkout__exito-cerrar" data-cerrar-checkout>Entendido</button>
       </div>
     </div>
   </div>

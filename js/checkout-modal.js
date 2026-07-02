@@ -54,6 +54,7 @@ const CheckoutModal = (function () {
     mostrarFormulario();
     seleccionarTipoEnvio("lima");
     actualizarResumen();
+    prepararMapaEntrega();
 
     SupabaseCliente.registrarEvento("abrir_modal_checkout", { cantidad: cantidadActual });
   }
@@ -93,6 +94,7 @@ const CheckoutModal = (function () {
       tipo === "lima" ? "Ingresa tus datos de entrega" : "Ingresa tus datos para envío a provincia";
 
     actualizarResumen();
+    if (tipo === "lima") prepararMapaEntrega();
 
     const nombreEvento = tipo === "lima" ? "seleccion_envio_lima" : "seleccion_envio_provincia";
     SupabaseCliente.registrarEvento(nombreEvento);
@@ -225,10 +227,13 @@ const CheckoutModal = (function () {
   // porque el detalle completo se lo envías tú desde la app admin.
   // ----------------------------------------------------------
   function armarMensajeConfirmacionCorta(datos) {
-    return (
+    let msg =
       "¡Hola! Acabo de confirmar mi pedido de *" + CONFIG.PRODUCTO_NOMBRE + "*. " +
-      "Quedo atento(a) al detalle de mi compra. ¡Gracias!"
-    );
+      "Quedo atento(a) al detalle de mi compra. ¡Gracias!";
+    if (ubicacionMaps) {
+      msg += "\n📍 Mi ubicación: " + ubicacionMaps;
+    }
+    return msg;
   }
 
   // ----------------------------------------------------------
@@ -426,53 +431,104 @@ const CheckoutModal = (function () {
     inicializarUbicacionGPS();
   }
 
-  // Guarda el link de Google Maps de la ubicación del cliente (o null)
+  // Guarda el link de Google Maps de la ubicación de entrega (o null)
   let ubicacionMaps = null;
+  let mapaLeaflet = null;
+  let marcadorLeaflet = null;
+  const LIMA_CENTRO = [-12.0464, -77.0428];
+
+  function actualizarUbicacionDesdeMarcador() {
+    if (!marcadorLeaflet) return;
+    const pos = marcadorLeaflet.getLatLng();
+    const lat = pos.lat.toFixed(6);
+    const lng = pos.lng.toFixed(6);
+    ubicacionMaps = "https://www.google.com/maps?q=" + lat + "," + lng;
+    const estado = document.getElementById("mapa-estado");
+    if (estado) estado.textContent = "✓ Ubicación marcada";
+  }
+
+  function crearMapaEntrega() {
+    const cont = document.getElementById("mapa-leaflet");
+    if (!cont || mapaLeaflet || typeof L === "undefined") return;
+
+    mapaLeaflet = L.map(cont, { attributionControl: false }).setView(LIMA_CENTRO, 12);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+    }).addTo(mapaLeaflet);
+
+    marcadorLeaflet = L.marker(LIMA_CENTRO, { draggable: true }).addTo(mapaLeaflet);
+    marcadorLeaflet.on("dragend", actualizarUbicacionDesdeMarcador);
+
+    // Tocar el mapa mueve el pin
+    mapaLeaflet.on("click", function (e) {
+      marcadorLeaflet.setLatLng(e.latlng);
+      actualizarUbicacionDesdeMarcador();
+    });
+  }
+
+  // Se llama al abrir el modal / entrar a Lima: crea el mapa y ajusta su tamaño
+  function prepararMapaEntrega() {
+    crearMapaEntrega();
+    if (mapaLeaflet) {
+      setTimeout(function () { mapaLeaflet.invalidateSize(); }, 200);
+    }
+  }
+
+  function buscarDireccionEnMapa() {
+    const input = document.getElementById("mapa-buscar");
+    if (!input || !input.value.trim() || !mapaLeaflet) return;
+    const q = encodeURIComponent(input.value.trim() + ", Perú");
+    const estado = document.getElementById("mapa-estado");
+    if (estado) estado.textContent = "Buscando...";
+
+    fetch("https://nominatim.openstreetmap.org/search?format=json&limit=1&q=" + q)
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (data && data.length > 0) {
+          const lat = parseFloat(data[0].lat);
+          const lng = parseFloat(data[0].lon);
+          mapaLeaflet.setView([lat, lng], 16);
+          marcadorLeaflet.setLatLng([lat, lng]);
+          actualizarUbicacionDesdeMarcador();
+        } else {
+          if (estado) estado.textContent = "No se encontró esa dirección";
+        }
+      })
+      .catch(function () {
+        if (estado) estado.textContent = "No se pudo buscar";
+      });
+  }
 
   function inicializarUbicacionGPS() {
-    const boton = document.getElementById("btn-ubicacion-gps");
-    const texto = document.getElementById("btn-gps-texto");
-    const resultado = document.getElementById("gps-resultado");
-    const link = document.getElementById("gps-link");
-    const quitar = document.getElementById("gps-quitar");
-    if (!boton) return;
+    const btnGps = document.getElementById("btn-ubicacion-gps");
+    const btnBuscar = document.getElementById("mapa-btn-buscar");
+    const inputBuscar = document.getElementById("mapa-buscar");
+    const estado = document.getElementById("mapa-estado");
 
-    boton.addEventListener("click", function () {
-      if (!navigator.geolocation) {
-        texto.textContent = "Tu navegador no permite ubicación";
-        return;
-      }
-      texto.textContent = "Obteniendo ubicación...";
-      boton.disabled = true;
+    if (btnGps) {
+      btnGps.addEventListener("click", function () {
+        if (!navigator.geolocation || !mapaLeaflet) return;
+        if (estado) estado.textContent = "Obteniendo tu ubicación...";
+        navigator.geolocation.getCurrentPosition(
+          function (pos) {
+            const lat = pos.coords.latitude;
+            const lng = pos.coords.longitude;
+            mapaLeaflet.setView([lat, lng], 16);
+            marcadorLeaflet.setLatLng([lat, lng]);
+            actualizarUbicacionDesdeMarcador();
+          },
+          function () {
+            if (estado) estado.textContent = "No se pudo obtener (permití el acceso)";
+          },
+          { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+        );
+      });
+    }
 
-      navigator.geolocation.getCurrentPosition(
-        function (pos) {
-          const lat = pos.coords.latitude.toFixed(6);
-          const lng = pos.coords.longitude.toFixed(6);
-          ubicacionMaps = "https://www.google.com/maps?q=" + lat + "," + lng;
-          if (link) link.href = ubicacionMaps;
-          if (resultado) resultado.style.display = "flex";
-          boton.style.display = "none";
-          SupabaseCliente.registrarEvento("ubicacion_gps_ok");
-        },
-        function (err) {
-          boton.disabled = false;
-          texto.textContent = "No se pudo obtener (permití el acceso)";
-          setTimeout(function () {
-            texto.textContent = "Usar mi ubicación GPS";
-          }, 3000);
-        },
-        { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
-      );
-    });
-
-    if (quitar) {
-      quitar.addEventListener("click", function () {
-        ubicacionMaps = null;
-        if (resultado) resultado.style.display = "none";
-        boton.style.display = "";
-        boton.disabled = false;
-        texto.textContent = "Usar mi ubicación GPS";
+    if (btnBuscar) btnBuscar.addEventListener("click", buscarDireccionEnMapa);
+    if (inputBuscar) {
+      inputBuscar.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") { e.preventDefault(); buscarDireccionEnMapa(); }
       });
     }
   }

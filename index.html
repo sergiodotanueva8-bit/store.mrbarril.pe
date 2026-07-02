@@ -32,6 +32,7 @@
   <link rel="stylesheet" href="css/landing.css" />
   <link rel="stylesheet" href="css/checkout-modal.css" />
   <link rel="stylesheet" href="css/mejoras_landing.css" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
 
@@ -894,17 +895,22 @@
                 <input type="text" id="campo-direccion" placeholder="Ej: Av. Los Próceres 123, Urb. Los Jardines" />
                 <span class="campo__error-texto" data-error-de="campo-direccion"></span>
 
-                <!-- Ubicación GPS (opcional, ayuda a que el envío llegue exacto) -->
-                <button type="button" id="btn-ubicacion-gps" class="btn-gps">
-                  <span class="btn-gps__icono">📍</span>
-                  <span id="btn-gps-texto">Usar mi ubicación GPS</span>
-                </button>
-                <div id="gps-resultado" class="gps-resultado" style="display:none;">
-                  <span class="gps-resultado__ok">✓ Ubicación agregada</span>
-                  <a id="gps-link" href="#" target="_blank" rel="noopener">Ver en el mapa</a>
-                  <button type="button" id="gps-quitar" class="gps-quitar" aria-label="Quitar ubicación">✕</button>
+                <!-- Mapa de ubicación de entrega (opcional pero recomendado) -->
+                <div class="mapa-entrega">
+                  <div class="mapa-entrega__barra">
+                    <input type="text" id="mapa-buscar" class="mapa-entrega__buscar"
+                           placeholder="🔎 Buscar dirección en el mapa..." />
+                    <button type="button" id="mapa-btn-buscar" class="mapa-entrega__btn-buscar">Buscar</button>
+                  </div>
+                  <div id="mapa-leaflet" class="mapa-entrega__mapa"></div>
+                  <div class="mapa-entrega__pie">
+                    <button type="button" id="btn-ubicacion-gps" class="mapa-entrega__gps">
+                      📍 Mi ubicación actual
+                    </button>
+                    <span id="mapa-estado" class="mapa-entrega__estado">Arrastrá el pin al lugar de entrega</span>
+                  </div>
                 </div>
-                <span class="campo__ayuda">Opcional. Ayuda a que tu pedido llegue exacto a tu puerta.</span>
+                <span class="campo__ayuda">Marcá en el mapa dónde querés recibir tu pedido (puede ser otra dirección).</span>
               </div>
 
               <label class="campo-checkbox" for="campo-agrega-instalacion">
@@ -1086,6 +1092,7 @@
   <script src="js/config.js"></script>
   <script src="js/supabase-client.js"></script>
   <script src="js/pixels.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="js/checkout-modal.js"></script>
   <script src="js/landing.js"></script>
   <script src="js/antes-despues.js"></script>

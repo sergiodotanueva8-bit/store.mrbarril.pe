@@ -25,10 +25,18 @@ document.addEventListener("DOMContentLoaded", function () {
   // Color elegido (por defecto negro). Se guarda global para el checkout.
   window.colorSeleccionadoGlobal = "negro";
 
+  let navegandoManual = false;
+  let timerNavManual;
+
   function irASlide(indice) {
     if (!carrusel || !slides[indice]) return;
-    carrusel.scrollTo({ left: slides[indice].offsetLeft, behavior: "smooth" });
+    // Marca de inmediato y bloquea el detector de scroll para que no lo pise
+    navegandoManual = true;
+    clearTimeout(timerNavManual);
     marcarActivo(indice);
+    carrusel.scrollTo({ left: carrusel.clientWidth * indice, behavior: "smooth" });
+    // Reactiva el detector cuando el scroll suave ya terminó
+    timerNavManual = setTimeout(function () { navegandoManual = false; }, 600);
   }
 
   function marcarActivo(indice) {
@@ -70,6 +78,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (carrusel) {
     let timeoutScroll;
     carrusel.addEventListener("scroll", function () {
+      if (navegandoManual) return; // no pisar la selección hecha por dot/color
       clearTimeout(timeoutScroll);
       timeoutScroll = setTimeout(function () {
         const indiceActual = Math.round(carrusel.scrollLeft / carrusel.clientWidth);

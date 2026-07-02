@@ -409,11 +409,27 @@
    MEDIDAS DEL PRODUCTO (imagen)
    ═══════════════════════════════════════════════════════════════════════════ */
 .mej-medidas { padding: var(--espacio-seccion) 0; }
-.mej-medidas__img {
-  display: block;
-  width: 100%;
+
+/* Marco que recorta el zoom suave (efecto Ken Burns) */
+.mej-medidas__marco {
   max-width: 520px;
   margin: 0 auto;
   border-radius: var(--radio-lg);
+  overflow: hidden;               /* recorta el excedente del zoom */
   box-shadow: var(--sombra-md);
+}
+.mej-medidas__img {
+  display: block;
+  width: 100%;
+  border-radius: var(--radio-lg);
+  transform-origin: 60% 45%;      /* centra el zoom hacia el producto */
+  animation: kenburns 18s ease-in-out infinite alternate;
+}
+@keyframes kenburns {
+  from { transform: scale(1); }
+  to   { transform: scale(1.12); }
+}
+/* Respeta a quienes prefieren menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  .mej-medidas__img { animation: none; }
 }

@@ -507,6 +507,8 @@ const CheckoutModal = (function () {
     actualizarUbicacionDesdeMarcador();
     const lista = document.getElementById("mapa-resultados");
     if (lista) { lista.style.display = "none"; lista.innerHTML = ""; }
+    const estado = document.getElementById("mapa-estado");
+    if (estado) estado.textContent = "Ahora ajustá el pin a tu puerta y tocá Confirmar";
   }
 
   function buscarDireccionEnMapa() {
@@ -532,7 +534,7 @@ const CheckoutModal = (function () {
         if (!data || data.length === 0) {
           lista.style.display = "none";
           lista.innerHTML = "";
-          if (estado) estado.textContent = "No se encontró. Probá agregando el distrito.";
+          if (estado) estado.textContent = "No aparece. Buscá solo la calle/distrito, o arrastrá el pin a mano.";
           return;
         }
         lista.innerHTML = "";

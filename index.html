@@ -31,6 +31,7 @@
   <link rel="stylesheet" href="css/variables.css" />
   <link rel="stylesheet" href="css/landing.css" />
   <link rel="stylesheet" href="css/checkout-modal.css" />
+  <link rel="stylesheet" href="css/mejoras_landing.css" />
 </head>
 <body>
 
@@ -378,6 +379,102 @@
   </main>
 
   <!-- ============================================================
+       PROBLEMA → SOLUCIÓN
+       ============================================================ -->
+  <section class="mej-problema">
+    <div class="contenedor">
+      <h3 class="mej-titulo">¿Te pasa esto en casa?</h3>
+      <p class="mej-subtitulo">El tendedero de siempre te complica la vida. El nuestro lo soluciona.</p>
+      <div class="mej-problema__grid">
+        <div class="mej-problema__col mej-problema__col--dolor">
+          <div class="mej-problema__badge mej-problema__badge--malo">😩 Antes</div>
+          <ul>
+            <li>❌ Ropa que no seca por falta de espacio</li>
+            <li>❌ Tendederos de soga que se rompen o ceden</li>
+            <li>❌ Se oxidan con la humedad y manchan la ropa</li>
+            <li>❌ Ocupan lugar todo el día, hasta cuando no los usas</li>
+          </ul>
+        </div>
+        <div class="mej-problema__col mej-problema__col--solucion">
+          <div class="mej-problema__badge mej-problema__badge--bueno">😍 Con nuestro tendedero</div>
+          <ul>
+            <li>✅ 6 filas: mucho más espacio para tender de una vez</li>
+            <li>✅ Acero galvanizado que soporta hasta 120 KG</li>
+            <li>✅ No se oxida ni se pela, ideal para zonas húmedas</li>
+            <li>✅ Se pliega a la pared y desaparece cuando no lo usas</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       SLIDER ANTES / DESPUÉS
+       Necesitás subir: assets/images/antes-ropa-amontonada.jpg
+                        assets/images/despues-tendedero.jpg
+       (mismo tamaño y ángulo las dos)
+       ============================================================ -->
+  <section class="mej-ba">
+    <div class="contenedor">
+      <h3 class="mej-titulo">Mirá el cambio en tu hogar</h3>
+      <p class="mej-subtitulo">Desliza la barra para ver el antes y el después 👉</p>
+      <div class="ba" id="ba-slider">
+        <img class="ba__img ba__img--despues" src="assets/images/despues-tendedero.jpg" alt="Después: tendedero instalado con la ropa ordenada" draggable="false" />
+        <div class="ba__antes" id="ba-antes">
+          <img class="ba__img" src="assets/images/antes-ropa-amontonada.jpg" alt="Antes: ropa amontonada y desorden" draggable="false" />
+        </div>
+        <span class="ba__label ba__label--antes">ANTES</span>
+        <span class="ba__label ba__label--despues">DESPUÉS</span>
+        <div class="ba__divisor" id="ba-divisor">
+          <div class="ba__tirador"><span class="ba__flecha">‹</span><span class="ba__flecha">›</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
+       COMPARATIVA
+       ============================================================ -->
+  <section class="mej-compara">
+    <div class="contenedor">
+      <h3 class="mej-titulo">Por qué vale la pena</h3>
+      <p class="mej-subtitulo">La diferencia se nota desde el primer día.</p>
+      <div class="mej-compara__tabla">
+        <div class="mej-compara__fila mej-compara__fila--head">
+          <div class="mej-compara__celda mej-compara__celda--carac">Característica</div>
+          <div class="mej-compara__celda mej-compara__celda--otros">Tendedero común</div>
+          <div class="mej-compara__celda mej-compara__celda--nuestro">El nuestro</div>
+        </div>
+        <div class="mej-compara__fila">
+          <div class="mej-compara__celda mej-compara__celda--carac">Material</div>
+          <div class="mej-compara__celda mej-compara__celda--otros">Plástico / soga</div>
+          <div class="mej-compara__celda mej-compara__celda--nuestro">Acero galvanizado</div>
+        </div>
+        <div class="mej-compara__fila">
+          <div class="mej-compara__celda mej-compara__celda--carac">Resistencia</div>
+          <div class="mej-compara__celda mej-compara__celda--otros">Se vence rápido</div>
+          <div class="mej-compara__celda mej-compara__celda--nuestro">Hasta 120 KG</div>
+        </div>
+        <div class="mej-compara__fila">
+          <div class="mej-compara__celda mej-compara__celda--carac">Se oxida</div>
+          <div class="mej-compara__celda mej-compara__celda--otros">Sí, con la humedad</div>
+          <div class="mej-compara__celda mej-compara__celda--nuestro">No, anti-óxido</div>
+        </div>
+        <div class="mej-compara__fila">
+          <div class="mej-compara__celda mej-compara__celda--carac">Espacio</div>
+          <div class="mej-compara__celda mej-compara__celda--otros">2-3 líneas</div>
+          <div class="mej-compara__celda mej-compara__celda--nuestro">6 filas de tendido</div>
+        </div>
+        <div class="mej-compara__fila">
+          <div class="mej-compara__celda mej-compara__celda--carac">Se guarda</div>
+          <div class="mej-compara__celda mej-compara__celda--otros">Ocupa lugar fijo</div>
+          <div class="mej-compara__celda mej-compara__celda--nuestro">Plegable a la pared</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================
        FRANJA DE CONFIANZA: envíos, métodos de pago, clientes
        ============================================================ -->
   <section class="franja-confianza">
@@ -424,13 +521,57 @@
         Formato: JPG, deben verse personas reales sosteniendo el paquete
         recibido (idealmente con consentimiento/autorización del cliente).
       -->
-      <div class="clientes-grid">
-        <img src="assets/images/cliente-testimonio-1.jpg" alt="Cliente satisfecho 1"  loading="lazy" />
-        <img src="assets/images/cliente-testimonio-2.jpg" alt="Cliente satisfecho 2"  loading="lazy" />
-        <img src="assets/images/cliente-testimonio-3.jpg" alt="Cliente satisfecho 3"  loading="lazy" />
-        <img src="assets/images/cliente-testimonio-4.jpg" alt="Cliente satisfecho 4"  loading="lazy" />
-        <img src="assets/images/cliente-testimonio-5.jpg" alt="Cliente satisfecho 5"  loading="lazy" />
-        <img src="assets/images/cliente-testimonio-6.jpg" alt="Cliente satisfecho 6"  loading="lazy" />
+      <div class="carrusel-social" data-carrusel data-dir="derecha">
+        <div class="carrusel-social__track">
+        <img src="assets/images/cliente-testimonio-1.jpg" alt="Cliente satisfecho 1" loading="lazy" draggable="false" />
+        <img src="assets/images/cliente-testimonio-2.jpg" alt="Cliente satisfecho 2" loading="lazy" draggable="false" />
+        <img src="assets/images/cliente-testimonio-3.jpg" alt="Cliente satisfecho 3" loading="lazy" draggable="false" />
+        <img src="assets/images/cliente-testimonio-4.jpg" alt="Cliente satisfecho 4" loading="lazy" draggable="false" />
+        <img src="assets/images/cliente-testimonio-5.jpg" alt="Cliente satisfecho 5" loading="lazy" draggable="false" />
+        <img src="assets/images/cliente-testimonio-6.jpg" alt="Cliente satisfecho 6" loading="lazy" draggable="false" />
+        <img src="assets/images/cliente-testimonio-7.jpg" alt="Cliente satisfecho 7" loading="lazy" draggable="false" />
+        <img src="assets/images/cliente-testimonio-8.jpg" alt="Cliente satisfecho 8" loading="lazy" draggable="false" />
+        <img src="assets/images/cliente-testimonio-9.jpg" alt="Cliente satisfecho 9" loading="lazy" draggable="false" />
+        <img src="assets/images/cliente-testimonio-10.jpg" alt="Cliente satisfecho 10" loading="lazy" draggable="false" />
+        <img src="assets/images/cliente-testimonio-1.jpg" aria-hidden="true" alt="Cliente satisfecho 1" loading="lazy" draggable="false" />
+        <img src="assets/images/cliente-testimonio-2.jpg" aria-hidden="true" alt="Cliente satisfecho 2" loading="lazy" draggable="false" />
+        <img src="assets/images/cliente-testimonio-3.jpg" aria-hidden="true" alt="Cliente satisfecho 3" loading="lazy" draggable="false" />
+        <img src="assets/images/cliente-testimonio-4.jpg" aria-hidden="true" alt="Cliente satisfecho 4" loading="lazy" draggable="false" />
+        <img src="assets/images/cliente-testimonio-5.jpg" aria-hidden="true" alt="Cliente satisfecho 5" loading="lazy" draggable="false" />
+        <img src="assets/images/cliente-testimonio-6.jpg" aria-hidden="true" alt="Cliente satisfecho 6" loading="lazy" draggable="false" />
+        <img src="assets/images/cliente-testimonio-7.jpg" aria-hidden="true" alt="Cliente satisfecho 7" loading="lazy" draggable="false" />
+        <img src="assets/images/cliente-testimonio-8.jpg" aria-hidden="true" alt="Cliente satisfecho 8" loading="lazy" draggable="false" />
+        <img src="assets/images/cliente-testimonio-9.jpg" aria-hidden="true" alt="Cliente satisfecho 9" loading="lazy" draggable="false" />
+        <img src="assets/images/cliente-testimonio-10.jpg" aria-hidden="true" alt="Cliente satisfecho 10" loading="lazy" draggable="false" />
+        </div>
+      </div>
+
+      <!-- Reseñas con texto -->
+      <div class="mej-resenas">
+        <div class="mej-resena">
+          <div class="mej-resena__top">
+            <span class="mej-resena__estrellas">★★★★★</span>
+            <span class="mej-resena__verificado">✔️ Compra verificada</span>
+          </div>
+          <p class="mej-resena__texto">"Llegó rapidísimo a Arequipa. Lo instalé sola en 15 minutos, aguanta un montón de ropa mojada sin problema. Súper recomendado."</p>
+          <div class="mej-resena__autor">— María G. · Arequipa</div>
+        </div>
+        <div class="mej-resena">
+          <div class="mej-resena__top">
+            <span class="mej-resena__estrellas">★★★★★</span>
+            <span class="mej-resena__verificado">✔️ Compra verificada</span>
+          </div>
+          <p class="mej-resena__texto">"Vivo en un depa chico y esto me salvó. Lo pliego y ni se nota. La calidad del acero se siente, no es como los de plástico de antes."</p>
+          <div class="mej-resena__autor">— Carlos M. · Lima, San Miguel</div>
+        </div>
+        <div class="mej-resena">
+          <div class="mej-resena__top">
+            <span class="mej-resena__estrellas">★★★★★</span>
+            <span class="mej-resena__verificado">✔️ Compra verificada</span>
+          </div>
+          <p class="mej-resena__texto">"Pagué al recibirlo, todo tal cual la foto. El técnico vino a instalarlo y quedó firme en la pared. Muy contenta con la compra."</p>
+          <div class="mej-resena__autor">— Rosa T. · Trujillo</div>
+        </div>
       </div>
 
       <h3 class="seccion-titulo-centrado" style="margin-top: 40px;">ENVÍOS GARANTIZADOS A TODO EL PERÚ</h3>
@@ -441,15 +582,33 @@
         Formato: JPG, fotos de paquetes empacados, camiones de reparto,
         o evidencia de despacho (las que ya usas para mostrar logística real).
       -->
-      <div class="envios-grid">
-        <img src="assets/images/envio-paquete-1.jpg" alt="Envío 1"  loading="lazy" />
-        <img src="assets/images/envio-paquete-2.jpg" alt="Envío 2"  loading="lazy" />
-        <img src="assets/images/envio-paquete-3.jpg" alt="Envío 3"  loading="lazy" />
-        <img src="assets/images/envio-paquete-4.jpg" alt="Envío 4"  loading="lazy" />
-        <img src="assets/images/envio-paquete-5.jpg" alt="Envío 5"  loading="lazy" />
-        <img src="assets/images/envio-paquete-6.jpg" alt="Envío 6"  loading="lazy" />
-        <img src="assets/images/envio-paquete-7.jpg" alt="Envío 7"  loading="lazy" />
-        <img src="assets/images/envio-paquete-8.jpg" alt="Envío 8"  loading="lazy" />
+      <div class="carrusel-social" data-carrusel data-dir="izquierda">
+        <div class="carrusel-social__track">
+        <img src="assets/images/envio-paquete-1.jpg" alt="Envío 1" loading="lazy" draggable="false" />
+        <img src="assets/images/envio-paquete-2.jpg" alt="Envío 2" loading="lazy" draggable="false" />
+        <img src="assets/images/envio-paquete-3.jpg" alt="Envío 3" loading="lazy" draggable="false" />
+        <img src="assets/images/envio-paquete-4.jpg" alt="Envío 4" loading="lazy" draggable="false" />
+        <img src="assets/images/envio-paquete-5.jpg" alt="Envío 5" loading="lazy" draggable="false" />
+        <img src="assets/images/envio-paquete-6.jpg" alt="Envío 6" loading="lazy" draggable="false" />
+        <img src="assets/images/envio-paquete-7.jpg" alt="Envío 7" loading="lazy" draggable="false" />
+        <img src="assets/images/envio-paquete-8.jpg" alt="Envío 8" loading="lazy" draggable="false" />
+        <img src="assets/images/envio-paquete-9.jpg" alt="Envío 9" loading="lazy" draggable="false" />
+        <img src="assets/images/envio-paquete-10.jpg" alt="Envío 10" loading="lazy" draggable="false" />
+        <img src="assets/images/envio-paquete-11.jpg" alt="Envío 11" loading="lazy" draggable="false" />
+        <img src="assets/images/envio-paquete-12.jpg" alt="Envío 12" loading="lazy" draggable="false" />
+        <img src="assets/images/envio-paquete-1.jpg" aria-hidden="true" alt="Envío 1" loading="lazy" draggable="false" />
+        <img src="assets/images/envio-paquete-2.jpg" aria-hidden="true" alt="Envío 2" loading="lazy" draggable="false" />
+        <img src="assets/images/envio-paquete-3.jpg" aria-hidden="true" alt="Envío 3" loading="lazy" draggable="false" />
+        <img src="assets/images/envio-paquete-4.jpg" aria-hidden="true" alt="Envío 4" loading="lazy" draggable="false" />
+        <img src="assets/images/envio-paquete-5.jpg" aria-hidden="true" alt="Envío 5" loading="lazy" draggable="false" />
+        <img src="assets/images/envio-paquete-6.jpg" aria-hidden="true" alt="Envío 6" loading="lazy" draggable="false" />
+        <img src="assets/images/envio-paquete-7.jpg" aria-hidden="true" alt="Envío 7" loading="lazy" draggable="false" />
+        <img src="assets/images/envio-paquete-8.jpg" aria-hidden="true" alt="Envío 8" loading="lazy" draggable="false" />
+        <img src="assets/images/envio-paquete-9.jpg" aria-hidden="true" alt="Envío 9" loading="lazy" draggable="false" />
+        <img src="assets/images/envio-paquete-10.jpg" aria-hidden="true" alt="Envío 10" loading="lazy" draggable="false" />
+        <img src="assets/images/envio-paquete-11.jpg" aria-hidden="true" alt="Envío 11" loading="lazy" draggable="false" />
+        <img src="assets/images/envio-paquete-12.jpg" aria-hidden="true" alt="Envío 12" loading="lazy" draggable="false" />
+        </div>
       </div>
 
       <div class="beneficios-finales">
@@ -767,5 +926,7 @@
   <script src="js/pixels.js"></script>
   <script src="js/checkout-modal.js"></script>
   <script src="js/landing.js"></script>
+  <script src="js/antes-despues.js"></script>
+  <script src="js/carrusel-clientes.js"></script>
 </body>
 </html>

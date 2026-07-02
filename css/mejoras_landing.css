@@ -1,0 +1,290 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   MEJORAS LANDING — estilos de las 4 secciones de prioridad alta.
+   Usa las variables de tu variables.css (naranja, verde, radios, sombras).
+   Mobile-first, igual que tu landing.css.
+   Enlazá este archivo en el <head> DESPUÉS de landing.css:
+     <link rel="stylesheet" href="css/mejoras_landing.css" />
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+/* Títulos compartidos por las secciones nuevas */
+.mej-titulo {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--color-texto);
+  margin-top: 8px;
+}
+.mej-subtitulo {
+  text-align: center;
+  font-size: 14px;
+  color: var(--color-texto-secundario);
+  margin: 6px auto 22px;
+  max-width: 560px;
+}
+
+/* ── BLOQUE 1: PROBLEMA → SOLUCIÓN ──────────────────────────────────────── */
+.mej-problema {
+  padding: var(--espacio-seccion) 0;
+  background: var(--color-fondo-gris);
+}
+.mej-problema__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.mej-problema__col {
+  background: #fff;
+  border-radius: var(--radio-lg);
+  padding: 18px 18px 20px;
+  box-shadow: var(--sombra-sm);
+  border: 1px solid var(--color-borde);
+}
+.mej-problema__col--solucion {
+  border-color: var(--color-verde);
+  box-shadow: 0 4px 14px rgba(29, 138, 74, 0.12);
+}
+.mej-problema__badge {
+  display: inline-block;
+  font-weight: 800;
+  font-size: 14px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  margin-bottom: 12px;
+}
+.mej-problema__badge--malo {
+  background: var(--color-rojo-claro);
+  color: var(--color-rojo);
+}
+.mej-problema__badge--bueno {
+  background: var(--color-verde-claro);
+  color: var(--color-verde-oscuro);
+}
+.mej-problema__col ul { display: flex; flex-direction: column; gap: 10px; }
+.mej-problema__col li { font-size: 14.5px; line-height: 1.45; }
+
+/* ── BLOQUE 2: COMPARATIVA ──────────────────────────────────────────────── */
+.mej-compara { padding: var(--espacio-seccion) 0; }
+.mej-compara__tabla {
+  max-width: 760px;
+  margin: 0 auto;
+  border-radius: var(--radio-lg);
+  overflow: hidden;
+  box-shadow: var(--sombra-md);
+  border: 1px solid var(--color-borde);
+}
+.mej-compara__fila {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr 1fr;
+  align-items: center;
+}
+.mej-compara__fila:not(:last-child) { border-bottom: 1px solid var(--color-borde); }
+.mej-compara__celda {
+  padding: 13px 10px;
+  font-size: 13px;
+  text-align: center;
+}
+.mej-compara__celda--carac {
+  text-align: left;
+  font-weight: 700;
+  color: var(--color-texto);
+  background: var(--color-fondo-gris);
+}
+.mej-compara__celda--otros { color: var(--color-texto-tenue); }
+.mej-compara__celda--nuestro {
+  color: var(--color-verde-oscuro);
+  font-weight: 700;
+  background: var(--color-verde-claro);
+}
+.mej-compara__fila--head .mej-compara__celda {
+  font-weight: 800;
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+.mej-compara__fila--head .mej-compara__celda--nuestro { background: var(--color-verde); color: #fff; }
+.mej-compara__fila--head .mej-compara__celda--otros { color: var(--color-texto-secundario); }
+
+/* ── BLOQUE 3: RESEÑAS CON TEXTO ────────────────────────────────────────── */
+.mej-resenas {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+  max-width: 900px;
+  margin: 10px auto 30px;
+}
+.mej-resena {
+  background: #fff;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-lg);
+  padding: 16px 18px;
+  box-shadow: var(--sombra-sm);
+}
+.mej-resena__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.mej-resena__estrellas { color: var(--color-amarillo-estrella); letter-spacing: 2px; font-size: 15px; }
+.mej-resena__verificado { font-size: 11.5px; color: var(--color-verde); font-weight: 600; }
+.mej-resena__texto { font-size: 14.5px; line-height: 1.5; color: var(--color-texto); }
+.mej-resena__autor { margin-top: 10px; font-size: 13px; font-weight: 700; color: var(--color-texto-secundario); }
+
+/* ── BLOQUE 4: VIDEO ────────────────────────────────────────────────────── */
+.galeria__video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: inherit;
+  background: #000;
+}
+
+/* ── RESPONSIVE (tablet/desktop) ────────────────────────────────────────── */
+@media (min-width: 760px) {
+  .mej-titulo { font-size: 28px; }
+  .mej-problema__grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .mej-resenas { grid-template-columns: 1fr 1fr 1fr; }
+  .mej-compara__celda { font-size: 14.5px; padding: 15px 14px; }
+}
+/* ═══════════════════════════════════════════════════════════════════════════
+   SLIDER ANTES / DESPUÉS — estilos
+   Pegá esto al final de css/mejoras_landing.css (o en su propio archivo y
+   enlazalo en el <head>).
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.mej-ba {
+  padding: var(--espacio-seccion) 0;
+  background: var(--color-fondo-gris);
+}
+
+.ba {
+  position: relative;
+  max-width: 520px;
+  margin: 0 auto;
+  aspect-ratio: 1 / 1;            /* cuadrado; cambialo a 4/5 si tus fotos son verticales */
+  border-radius: var(--radio-lg);
+  overflow: hidden;
+  box-shadow: var(--sombra-lg);
+  user-select: none;
+  touch-action: pan-y;            /* permite scroll vertical de la página, pero captura el horizontal */
+  cursor: ew-resize;
+  background: #ddd;
+}
+
+.ba__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* La capa "antes" se recorta con clip-path según la posición del divisor */
+.ba__antes {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  clip-path: inset(0 50% 0 0);   /* JS actualiza el 50% */
+}
+.ba__antes .ba__img { width: 100%; height: 100%; }
+
+/* Etiquetas ANTES / DESPUÉS */
+.ba__label {
+  position: absolute;
+  top: 12px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  padding: 5px 11px;
+  border-radius: 999px;
+  color: #fff;
+  z-index: 3;
+  pointer-events: none;
+}
+.ba__label--antes   { left: 12px;  background: rgba(224, 43, 43, 0.92); }
+.ba__label--despues { right: 12px; background: rgba(29, 138, 74, 0.92); }
+
+/* Barra divisoria vertical */
+.ba__divisor {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;                      /* JS actualiza */
+  width: 3px;
+  background: #fff;
+  transform: translateX(-50%);
+  z-index: 4;
+  box-shadow: 0 0 8px rgba(0,0,0,0.35);
+}
+
+/* Tirador circular en el centro */
+.ba__tirador {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: var(--sombra-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+.ba__flecha {
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--color-naranja);
+}
+
+/* Animación sutil de "pista" para invitar a arrastrar (solo al cargar) */
+@keyframes ba-hint {
+  0%, 100% { transform: translateX(-50%); }
+  50%      { transform: translateX(calc(-50% + 14px)); }
+}
+.ba--hint .ba__divisor {
+  animation: ba-hint 1.4s ease-in-out 2;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   CARRUSEL SOCIAL INFINITO (filas de clientes y envíos)
+   Auto-avance en loop + arrastrable con el dedo/mouse.
+   ═══════════════════════════════════════════════════════════════════════════ */
+.carrusel-social {
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;            /* Firefox */
+  cursor: grab;
+  margin: 10px 0 4px;
+}
+.carrusel-social::-webkit-scrollbar { display: none; }  /* Chrome/Safari */
+.carrusel-social:active { cursor: grabbing; }
+
+.carrusel-social__track {
+  display: flex;
+  gap: 10px;
+  width: max-content;
+  will-change: transform;
+}
+.carrusel-social__track img {
+  width: 150px;
+  height: 190px;
+  object-fit: cover;
+  border-radius: var(--radio-lg);
+  flex: 0 0 auto;
+  box-shadow: var(--sombra-sm);
+  pointer-events: none;             /* que el arrastre no "agarre" la imagen */
+}
+
+@media (min-width: 760px) {
+  .carrusel-social__track img { width: 180px; height: 225px; }
+}

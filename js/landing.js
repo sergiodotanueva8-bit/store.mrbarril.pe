@@ -20,6 +20,10 @@ document.addEventListener("DOMContentLoaded", function () {
   const slides = document.querySelectorAll(".galeria__slide");
   const dots = document.querySelectorAll(".galeria__dot");
   const miniaturas = document.querySelectorAll(".miniatura[data-indice]");
+  const botonesColor = document.querySelectorAll(".selector-color__btn[data-color]");
+
+  // Color elegido (por defecto negro). Se guarda global para el checkout.
+  window.colorSeleccionadoGlobal = "negro";
 
   function irASlide(indice) {
     if (!carrusel || !slides[indice]) return;
@@ -34,6 +38,12 @@ document.addEventListener("DOMContentLoaded", function () {
     miniaturas.forEach(function (m) {
       m.classList.toggle("activa", parseInt(m.getAttribute("data-indice"), 10) === indice);
     });
+    // Sincronizar el selector de color con la foto actual
+    var color = indice < 5 ? "negro" : "blanco";
+    window.colorSeleccionadoGlobal = color;
+    botonesColor.forEach(function (b) {
+      b.classList.toggle("activo", b.getAttribute("data-color") === color);
+    });
   }
 
   // Clicks en dots y miniaturas mueven el carrusel
@@ -46,6 +56,13 @@ document.addEventListener("DOMContentLoaded", function () {
   miniaturas.forEach(function (miniatura) {
     miniatura.addEventListener("click", function () {
       irASlide(parseInt(miniatura.getAttribute("data-indice"), 10));
+    });
+  });
+
+  // Selector de color: Negro salta a la foto 1 (índice 0), Blanco a la 6 (índice 5)
+  botonesColor.forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      irASlide(parseInt(btn.getAttribute("data-slide-color"), 10));
     });
   });
 

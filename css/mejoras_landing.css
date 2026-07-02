@@ -256,18 +256,15 @@
 
 /* ═══════════════════════════════════════════════════════════════════════════
    CARRUSEL SOCIAL INFINITO (filas de clientes y envíos)
-   Auto-avance en loop + arrastrable con el dedo/mouse.
+   Movimiento con ANIMACIÓN CSS (siempre se mueve, suave y sin cortes).
+   El track tiene las imágenes duplicadas; se anima -50% para loop perfecto.
    ═══════════════════════════════════════════════════════════════════════════ */
 .carrusel-social {
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;            /* Firefox */
-  cursor: grab;
+  overflow: hidden;              /* oculta lo que sale; NO usamos scroll */
   margin: 10px 0 4px;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
+          mask-image: linear-gradient(to right, transparent, #000 6%, #000 94%, transparent);
 }
-.carrusel-social::-webkit-scrollbar { display: none; }  /* Chrome/Safari */
-.carrusel-social:active { cursor: grabbing; }
 
 .carrusel-social__track {
   display: flex;
@@ -275,6 +272,32 @@
   width: max-content;
   will-change: transform;
 }
+
+/* Animaciones: una hacia la izquierda y otra hacia la derecha */
+@keyframes marquee-izq {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes marquee-der {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+/* La fila "izquierda" desplaza hacia la izquierda; la "derecha", hacia la derecha.
+   Duración alta = movimiento lento y elegante. Ajustá los segundos si querés. */
+.carrusel-social[data-dir="izquierda"] .carrusel-social__track {
+  animation: marquee-izq 40s linear infinite;
+}
+.carrusel-social[data-dir="derecha"] .carrusel-social__track {
+  animation: marquee-der 40s linear infinite;
+}
+
+/* Pausa al pasar el mouse (desktop) o al tocar (lo maneja el JS con .pausado) */
+.carrusel-social:hover .carrusel-social__track,
+.carrusel-social.pausado .carrusel-social__track {
+  animation-play-state: paused;
+}
+
 .carrusel-social__track img {
   width: 150px;
   height: 190px;
@@ -282,9 +305,60 @@
   border-radius: var(--radio-lg);
   flex: 0 0 auto;
   box-shadow: var(--sombra-sm);
-  pointer-events: none;             /* que el arrastre no "agarre" la imagen */
+  pointer-events: none;
 }
 
 @media (min-width: 760px) {
   .carrusel-social__track img { width: 180px; height: 225px; }
 }
+
+/* Respeta a quienes prefieren menos movimiento (accesibilidad) */
+@media (prefers-reduced-motion: reduce) {
+  .carrusel-social__track { animation-duration: 120s; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   SELECTOR DE COLOR (Negro / Blanco) debajo de la galería
+   ═══════════════════════════════════════════════════════════════════════════ */
+.selector-color {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 14px 0 4px;
+  flex-wrap: wrap;
+}
+.selector-color__label {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--color-texto);
+  margin-right: 2px;
+}
+.selector-color__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px 8px 10px;
+  border: 2px solid var(--color-borde);
+  border-radius: 999px;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--color-texto);
+  cursor: pointer;
+  transition: border-color .15s, box-shadow .15s, transform .05s;
+}
+.selector-color__btn:active { transform: scale(0.97); }
+.selector-color__btn.activo {
+  border-color: var(--color-naranja);
+  box-shadow: 0 0 0 3px rgba(244, 117, 15, 0.15);
+}
+.selector-color__muestra {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid rgba(0,0,0,0.2);
+  flex: 0 0 auto;
+}
+.selector-color__muestra--negro { background: #1a1a1a; }
+.selector-color__muestra--blanco { background: #ffffff; border-color: #bbb; }

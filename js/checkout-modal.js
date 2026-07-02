@@ -29,6 +29,11 @@ const CheckoutModal = (function () {
     return "S/ " + numero.toFixed(2);
   }
 
+  function colorElegido() {
+    // Lo setea landing.js según el selector de color (por defecto "negro")
+    return window.colorSeleccionadoGlobal === "blanco" ? "Blanco" : "Negro";
+  }
+
   function obtenerPrecioUnitarioPorCantidad(cantidad) {
     if (cantidad === 2) return CONFIG.PRECIO_X2_UNIDAD;
     if (cantidad === 3) return CONFIG.PRECIO_X3_UNIDAD;
@@ -126,6 +131,11 @@ const CheckoutModal = (function () {
     $("#resumen-linea-producto-cantidad").textContent =
       CONFIG.PRODUCTO_NOMBRE + " (" + cantidadActual + (cantidadActual === 1 ? " unidad)" : " unidades)");
     $("#resumen-linea-producto-precio").textContent = formatearMoneda(subtotalProducto);
+
+    const lineaColor = $("#resumen-linea-color");
+    if (lineaColor) {
+      lineaColor.textContent = colorElegido();
+    }
 
     const lineaInstalacion = $("#resumen-linea-instalacion");
     if (tipoEnvioActual === "lima") {
@@ -232,6 +242,7 @@ const CheckoutModal = (function () {
     lineas.push("");
     lineas.push("🧺 *" + CONFIG.PRODUCTO_NOMBRE + "*");
     lineas.push("Cantidad: " + cantidadActual);
+    lineas.push("Color: " + colorElegido());
     lineas.push("Subtotal: " + formatearMoneda(resumen.subtotalProducto));
 
     if (tipoEnvioActual === "lima") {
@@ -309,6 +320,7 @@ const CheckoutModal = (function () {
     datos.precioUnitario = resumen.precioUnitario;
     datos.costoInstalacion = resumen.costoInstalacion;
     datos.totalPagar = resumen.total;
+    datos.color = colorElegido();
 
     const mensajeCorto = armarMensajeConfirmacionCorta(datos);
     const mensajeCompleto = armarMensajePedidoCompleto(datos, resumen);

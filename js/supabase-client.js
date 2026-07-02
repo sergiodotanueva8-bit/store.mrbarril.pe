@@ -137,6 +137,7 @@ const SupabaseCliente = (function () {
           tipo_envio: datosPedido.tipoEnvio,
           nombre_completo: datosPedido.nombreCompleto,
           whatsapp: datosPedido.whatsapp,
+          color: datosPedido.color || null,
           distrito: datosPedido.distrito || null,
           direccion_exacta: datosPedido.direccionExacta || null,
           agrega_instalacion: !!datosPedido.agregaInstalacion,

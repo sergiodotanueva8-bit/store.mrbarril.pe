@@ -137,10 +137,8 @@ const SupabaseCliente = (function () {
           tipo_envio: datosPedido.tipoEnvio,
           nombre_completo: datosPedido.nombreCompleto,
           whatsapp: datosPedido.whatsapp,
-          color: datosPedido.color || null,
           distrito: datosPedido.distrito || null,
           direccion_exacta: datosPedido.direccionExacta || null,
-          ubicacion_maps: datosPedido.ubicacionMaps || null,
           agrega_instalacion: !!datosPedido.agregaInstalacion,
           dni: datosPedido.dni || null,
           departamento: datosPedido.departamento || null,
@@ -177,9 +175,14 @@ const SupabaseCliente = (function () {
     if (!db) return;
 
     try {
+      // Resolvemos el tienda_id (con caché) para que el evento quede vinculado
+      // a la tienda. Necesario para que el dueño vea sus analytics y para la
+      // política de seguridad de inserción anónima.
+      const tiendaId = await resolverTiendaId();
       const utms = obtenerUTMs();
       await db.from("eventos_analytics").insert([
         {
+          tienda_id: tiendaId,
           tipo_evento: tipoEvento,
           session_id: obtenerSessionId(),
           pagina: window.location.pathname,

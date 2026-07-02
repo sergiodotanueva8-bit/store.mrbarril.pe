@@ -893,6 +893,18 @@
                 <label for="campo-direccion">Dirección exacta</label>
                 <input type="text" id="campo-direccion" placeholder="Ej: Av. Los Próceres 123, Urb. Los Jardines" />
                 <span class="campo__error-texto" data-error-de="campo-direccion"></span>
+
+                <!-- Ubicación GPS (opcional, ayuda a que el envío llegue exacto) -->
+                <button type="button" id="btn-ubicacion-gps" class="btn-gps">
+                  <span class="btn-gps__icono">📍</span>
+                  <span id="btn-gps-texto">Usar mi ubicación GPS</span>
+                </button>
+                <div id="gps-resultado" class="gps-resultado" style="display:none;">
+                  <span class="gps-resultado__ok">✓ Ubicación agregada</span>
+                  <a id="gps-link" href="#" target="_blank" rel="noopener">Ver en el mapa</a>
+                  <button type="button" id="gps-quitar" class="gps-quitar" aria-label="Quitar ubicación">✕</button>
+                </div>
+                <span class="campo__ayuda">Opcional. Ayuda a que tu pedido llegue exacto a tu puerta.</span>
               </div>
 
               <label class="campo-checkbox" for="campo-agrega-instalacion">

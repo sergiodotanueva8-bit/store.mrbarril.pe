@@ -140,6 +140,7 @@ const SupabaseCliente = (function () {
           color: datosPedido.color || null,
           distrito: datosPedido.distrito || null,
           direccion_exacta: datosPedido.direccionExacta || null,
+          ubicacion_maps: datosPedido.ubicacionMaps || null,
           agrega_instalacion: !!datosPedido.agregaInstalacion,
           dni: datosPedido.dni || null,
           departamento: datosPedido.departamento || null,

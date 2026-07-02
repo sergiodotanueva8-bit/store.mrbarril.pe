@@ -258,6 +258,9 @@ const CheckoutModal = (function () {
             ? "Sí, agregar (" + formatearMoneda(CONFIG.COSTO_INSTALACION_LIMA) + ")"
             : "No")
       );
+      if (ubicacionMaps) {
+        lineas.push("📍 Ubicación GPS: " + ubicacionMaps);
+      }
     } else {
       lineas.push("");
       lineas.push("📦 *Envío a Provincia (Shalom)*");
@@ -321,6 +324,7 @@ const CheckoutModal = (function () {
     datos.costoInstalacion = resumen.costoInstalacion;
     datos.totalPagar = resumen.total;
     datos.color = colorElegido();
+    datos.ubicacionMaps = (tipoEnvioActual === "lima") ? ubicacionMaps : null;
 
     const mensajeCorto = armarMensajeConfirmacionCorta(datos);
     const mensajeCompleto = armarMensajePedidoCompleto(datos, resumen);
@@ -417,6 +421,60 @@ const CheckoutModal = (function () {
         limpiarError(input);
       });
     });
+
+    // ---- Ubicación GPS (checkout de Lima) ----
+    inicializarUbicacionGPS();
+  }
+
+  // Guarda el link de Google Maps de la ubicación del cliente (o null)
+  let ubicacionMaps = null;
+
+  function inicializarUbicacionGPS() {
+    const boton = document.getElementById("btn-ubicacion-gps");
+    const texto = document.getElementById("btn-gps-texto");
+    const resultado = document.getElementById("gps-resultado");
+    const link = document.getElementById("gps-link");
+    const quitar = document.getElementById("gps-quitar");
+    if (!boton) return;
+
+    boton.addEventListener("click", function () {
+      if (!navigator.geolocation) {
+        texto.textContent = "Tu navegador no permite ubicación";
+        return;
+      }
+      texto.textContent = "Obteniendo ubicación...";
+      boton.disabled = true;
+
+      navigator.geolocation.getCurrentPosition(
+        function (pos) {
+          const lat = pos.coords.latitude.toFixed(6);
+          const lng = pos.coords.longitude.toFixed(6);
+          ubicacionMaps = "https://www.google.com/maps?q=" + lat + "," + lng;
+          if (link) link.href = ubicacionMaps;
+          if (resultado) resultado.style.display = "flex";
+          boton.style.display = "none";
+          SupabaseCliente.registrarEvento("ubicacion_gps_ok");
+        },
+        function (err) {
+          boton.disabled = false;
+          texto.textContent = "No se pudo obtener (permití el acceso)";
+          setTimeout(function () {
+            texto.textContent = "Usar mi ubicación GPS";
+          }, 3000);
+        },
+        { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+      );
+    });
+
+    if (quitar) {
+      quitar.addEventListener("click", function () {
+        ubicacionMaps = null;
+        if (resultado) resultado.style.display = "none";
+        boton.style.display = "";
+        boton.disabled = false;
+        texto.textContent = "Usar mi ubicación GPS";
+      });
+    }
   }
 
   document.addEventListener("DOMContentLoaded", inicializar);

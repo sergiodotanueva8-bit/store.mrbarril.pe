@@ -468,6 +468,27 @@
   cursor: pointer;
   flex: 0 0 auto;
 }
+.mapa-entrega__resultados {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 180px;
+  overflow-y: auto;
+  background: #fff;
+  border-bottom: 0.5px solid var(--color-borde, #e2e2e2);
+}
+.mapa-entrega__resultado {
+  padding: 10px 12px;
+  font-size: 13px;
+  line-height: 1.35;
+  color: var(--color-texto, #1f2937);
+  border-bottom: 0.5px solid var(--color-borde, #eee);
+  cursor: pointer;
+}
+.mapa-entrega__resultado:hover,
+.mapa-entrega__resultado:active {
+  background: var(--color-fondo-gris, #f2f7fc);
+}
 .mapa-entrega__mapa {
   width: 100%;
   height: 240px;

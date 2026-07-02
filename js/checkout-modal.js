@@ -501,25 +501,52 @@ const CheckoutModal = (function () {
     }
   }
 
+  function seleccionarResultadoBusqueda(lat, lng) {
+    mapaLeaflet.setView([lat, lng], 17);
+    marcadorLeaflet.setLatLng([lat, lng]);
+    actualizarUbicacionDesdeMarcador();
+    const lista = document.getElementById("mapa-resultados");
+    if (lista) { lista.style.display = "none"; lista.innerHTML = ""; }
+  }
+
   function buscarDireccionEnMapa() {
     const input = document.getElementById("mapa-buscar");
-    if (!input || !input.value.trim() || !mapaLeaflet) return;
-    const q = encodeURIComponent(input.value.trim() + ", Perú");
+    const lista = document.getElementById("mapa-resultados");
     const estado = document.getElementById("mapa-estado");
+    if (!input || !input.value.trim() || !mapaLeaflet) return;
+
+    const q = encodeURIComponent(input.value.trim());
     if (estado) estado.textContent = "Buscando...";
 
-    fetch("https://nominatim.openstreetmap.org/search?format=json&limit=1&q=" + q)
+    // Sesgo a Perú (countrycodes=pe) y priorizando Lima (viewbox),
+    // varios resultados (limit=6) y direcciones detalladas (addressdetails=1).
+    const viewboxLima = "&viewbox=-77.30,-11.70,-76.70,-12.40&bounded=0";
+    const url =
+      "https://nominatim.openstreetmap.org/search?format=json&addressdetails=1" +
+      "&countrycodes=pe&limit=6" + viewboxLima + "&q=" + q;
+
+    fetch(url, { headers: { "Accept-Language": "es" } })
       .then(function (r) { return r.json(); })
       .then(function (data) {
-        if (data && data.length > 0) {
-          const lat = parseFloat(data[0].lat);
-          const lng = parseFloat(data[0].lon);
-          mapaLeaflet.setView([lat, lng], 16);
-          marcadorLeaflet.setLatLng([lat, lng]);
-          actualizarUbicacionDesdeMarcador();
-        } else {
-          if (estado) estado.textContent = "No se encontró esa dirección";
+        if (!lista) return;
+        if (!data || data.length === 0) {
+          lista.style.display = "none";
+          lista.innerHTML = "";
+          if (estado) estado.textContent = "No se encontró. Probá agregando el distrito.";
+          return;
         }
+        lista.innerHTML = "";
+        data.forEach(function (item) {
+          const li = document.createElement("li");
+          li.className = "mapa-entrega__resultado";
+          li.textContent = item.display_name;
+          li.addEventListener("click", function () {
+            seleccionarResultadoBusqueda(parseFloat(item.lat), parseFloat(item.lon));
+          });
+          lista.appendChild(li);
+        });
+        lista.style.display = "block";
+        if (estado) estado.textContent = "Tocá la dirección correcta de la lista";
       })
       .catch(function () {
         if (estado) estado.textContent = "No se pudo buscar";

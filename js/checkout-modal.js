@@ -437,14 +437,41 @@ const CheckoutModal = (function () {
   let marcadorLeaflet = null;
   const LIMA_CENTRO = [-12.0464, -77.0428];
 
+  // Link pendiente (pin movido pero NO confirmado todavía)
+  let ubicacionPendiente = null;
+
   function actualizarUbicacionDesdeMarcador() {
     if (!marcadorLeaflet) return;
     const pos = marcadorLeaflet.getLatLng();
     const lat = pos.lat.toFixed(6);
     const lng = pos.lng.toFixed(6);
-    ubicacionMaps = "https://www.google.com/maps?q=" + lat + "," + lng;
+    ubicacionPendiente = "https://www.google.com/maps?q=" + lat + "," + lng;
+    // Mover el pin "des-confirma": hay que confirmar de nuevo
+    ubicacionMaps = null;
     const estado = document.getElementById("mapa-estado");
-    if (estado) estado.textContent = "✓ Ubicación marcada";
+    const btnConf = document.getElementById("btn-confirmar-ubicacion");
+    if (estado) {
+      estado.textContent = "Ubicación lista — tocá Confirmar";
+      estado.classList.remove("mapa-entrega__estado--ok");
+    }
+    if (btnConf) btnConf.classList.add("mapa-entrega__confirmar--activo");
+  }
+
+  function confirmarUbicacion() {
+    if (!ubicacionPendiente) {
+      const estado = document.getElementById("mapa-estado");
+      if (estado) estado.textContent = "Primero marcá un punto en el mapa";
+      return;
+    }
+    ubicacionMaps = ubicacionPendiente;
+    const estado = document.getElementById("mapa-estado");
+    const btnConf = document.getElementById("btn-confirmar-ubicacion");
+    if (estado) {
+      estado.textContent = "✓ Ubicación confirmada";
+      estado.classList.add("mapa-entrega__estado--ok");
+    }
+    if (btnConf) btnConf.classList.remove("mapa-entrega__confirmar--activo");
+    SupabaseCliente.registrarEvento("ubicacion_confirmada");
   }
 
   function crearMapaEntrega() {
@@ -524,6 +551,9 @@ const CheckoutModal = (function () {
         );
       });
     }
+
+    const btnConfirmar = document.getElementById("btn-confirmar-ubicacion");
+    if (btnConfirmar) btnConfirmar.addEventListener("click", confirmarUbicacion);
 
     if (btnBuscar) btnBuscar.addEventListener("click", buscarDireccionEnMapa);
     if (inputBuscar) {

@@ -364,31 +364,6 @@
 .selector-color__muestra--blanco { background: #ffffff; border-color: #bbb; }
 
 /* ═══════════════════════════════════════════════════════════════════════════
-   ESPECIFICACIONES TÉCNICAS
-   ═══════════════════════════════════════════════════════════════════════════ */
-.mej-specs { padding: var(--espacio-seccion) 0; }
-.mej-specs__grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px;
-  max-width: 760px;
-  margin: 0 auto;
-}
-.mej-specs__item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  background: #fff;
-  border: 1px solid var(--color-borde);
-  border-radius: var(--radio-md);
-  padding: 12px 14px;
-  box-shadow: var(--sombra-sm);
-}
-.mej-specs__k { font-weight: 600; font-size: 13.5px; color: var(--color-texto-secundario); }
-.mej-specs__v { font-weight: 700; font-size: 13.5px; color: var(--color-texto); text-align: right; }
-
-/* ═══════════════════════════════════════════════════════════════════════════
    FAQ — acordeón
    ═══════════════════════════════════════════════════════════════════════════ */
 .mej-faq { padding: var(--espacio-seccion) 0; background: var(--color-fondo-gris); }
@@ -429,6 +404,16 @@
   color: var(--color-texto-secundario);
 }
 
-@media (min-width: 760px) {
-  .mej-specs__grid { grid-template-columns: 1fr 1fr; }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   MEDIDAS DEL PRODUCTO (imagen)
+   ═══════════════════════════════════════════════════════════════════════════ */
+.mej-medidas { padding: var(--espacio-seccion) 0; }
+.mej-medidas__img {
+  display: block;
+  width: 100%;
+  max-width: 520px;
+  margin: 0 auto;
+  border-radius: var(--radio-lg);
+  box-shadow: var(--sombra-md);
 }

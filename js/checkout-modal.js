@@ -507,6 +507,16 @@ const CheckoutModal = (function () {
     actualizarUbicacionDesdeMarcador();
     const lista = document.getElementById("mapa-resultados");
     if (lista) { lista.style.display = "none"; lista.innerHTML = ""; }
+
+    // Copiar lo que el cliente tecleó en el buscador al campo "Dirección exacta"
+    // SOLO si ese campo está vacío (para no pisar lo que ya haya escrito).
+    const inputBuscar = document.getElementById("mapa-buscar");
+    const campoDireccion = document.getElementById("campo-direccion");
+    if (campoDireccion && inputBuscar && !campoDireccion.value.trim()) {
+      campoDireccion.value = inputBuscar.value.trim();
+      limpiarError(campoDireccion);
+    }
+
     const estado = document.getElementById("mapa-estado");
     if (estado) estado.textContent = "Ahora ajustá el pin a tu puerta y tocá Confirmar";
   }

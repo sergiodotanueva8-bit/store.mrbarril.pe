@@ -362,3 +362,73 @@
 }
 .selector-color__muestra--negro { background: #1a1a1a; }
 .selector-color__muestra--blanco { background: #ffffff; border-color: #bbb; }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   ESPECIFICACIONES TÉCNICAS
+   ═══════════════════════════════════════════════════════════════════════════ */
+.mej-specs { padding: var(--espacio-seccion) 0; }
+.mej-specs__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  max-width: 760px;
+  margin: 0 auto;
+}
+.mej-specs__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-md);
+  padding: 12px 14px;
+  box-shadow: var(--sombra-sm);
+}
+.mej-specs__k { font-weight: 600; font-size: 13.5px; color: var(--color-texto-secundario); }
+.mej-specs__v { font-weight: 700; font-size: 13.5px; color: var(--color-texto); text-align: right; }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   FAQ — acordeón
+   ═══════════════════════════════════════════════════════════════════════════ */
+.mej-faq { padding: var(--espacio-seccion) 0; background: var(--color-fondo-gris); }
+.mej-faq__lista { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 10px; }
+.mej-faq__item {
+  background: #fff;
+  border: 1px solid var(--color-borde);
+  border-radius: var(--radio-md);
+  overflow: hidden;
+  box-shadow: var(--sombra-sm);
+}
+.mej-faq__item summary {
+  list-style: none;
+  cursor: pointer;
+  padding: 15px 44px 15px 16px;
+  font-weight: 700;
+  font-size: 14.5px;
+  color: var(--color-texto);
+  position: relative;
+}
+.mej-faq__item summary::-webkit-details-marker { display: none; }
+.mej-faq__item summary::after {
+  content: "+";
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-naranja);
+  transition: transform .2s;
+}
+.mej-faq__item[open] summary::after { content: "−"; }
+.mej-faq__resp {
+  padding: 0 16px 15px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--color-texto-secundario);
+}
+
+@media (min-width: 760px) {
+  .mej-specs__grid { grid-template-columns: 1fr 1fr; }
+}

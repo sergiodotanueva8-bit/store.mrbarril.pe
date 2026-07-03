@@ -74,6 +74,34 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  // ── Video del producto (slide 0): al tocar ▶ se reproduce el video ──
+  const btnPlay = document.getElementById("btn-play-video");
+  const video = document.getElementById("video-producto");
+  const posterImg = document.getElementById("video-poster-img");
+  if (btnPlay && video) {
+    btnPlay.addEventListener("click", function () {
+      // Ocultar imagen, botón y textos superpuestos; mostrar y reproducir video
+      if (posterImg) posterImg.style.display = "none";
+      btnPlay.style.display = "none";
+      document.querySelectorAll("[data-overlay-video]").forEach(function (el) {
+        el.style.display = "none";
+      });
+      video.style.display = "block";
+      video.setAttribute("controls", "controls");
+      video.play();
+    });
+    // Al terminar el video, volver a mostrar la imagen y el botón ▶
+    video.addEventListener("ended", function () {
+      video.style.display = "none";
+      video.removeAttribute("controls");
+      if (posterImg) posterImg.style.display = "";
+      btnPlay.style.display = "";
+      document.querySelectorAll("[data-overlay-video]").forEach(function (el) {
+        el.style.display = "";
+      });
+    });
+  }
+
   // Al deslizar con el dedo, detecta en qué slide quedó y actualiza dots/miniaturas
   if (carrusel) {
     let timeoutScroll;

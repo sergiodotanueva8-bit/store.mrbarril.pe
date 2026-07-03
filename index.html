@@ -130,16 +130,27 @@
               Tamaño recomendado: 1200x1500 px (relación 4:5, vertical)
               Formato: JPG optimizado para web (calidad 80-85%), peso ideal < 300KB
             -->
-            <div class="galeria__slide" data-slide="0">
-              <!--<div class="galeria__overlay-texto">
+            <div class="galeria__slide galeria__slide--con-video" data-slide="0" id="slide-con-video">
+              <div class="galeria__overlay-texto" data-overlay-video>
                 <h2>TENDEDERO PLEGABLE<br />6 FILAS</h2>
                 <p>Más espacio para tender, pliegalo cuando lo necesitas.</p>
-              </div>-->
-              <div class="galeria__sello-peso">
+              </div>
+              <div class="galeria__sello-peso" data-overlay-video>
                 SOPORTA HASTA<br /><strong>120</strong>KG
               </div>
-              <img src="assets/images/producto-negro-1.jpg" alt="Tendedero negro instalado en pared" />
-              <button class="galeria__play" aria-label="Reproducir video del producto">▶</button>
+              <img src="assets/images/producto-negro-1.jpg" alt="Tendedero negro instalado en pared" id="video-poster-img" />
+              <button class="galeria__play" id="btn-play-video" aria-label="Reproducir video del producto">▶</button>
+              <!--
+                VIDEO DEL PRODUCTO (local). Subí tu archivo a:
+                  assets/videos/producto-video.mp4
+                Recomendado: MP4 (H.264), vertical o cuadrado, 15-40 seg,
+                optimizado para web (< 8-10 MB idealmente).
+              -->
+              <video id="video-producto" class="galeria__video" playsinline preload="none"
+                     poster="assets/images/producto-negro-1.jpg" style="display:none;">
+                <source src="assets/videos/producto-video.mp4" type="video/mp4" />
+                Tu navegador no soporta la reproducción de video.
+              </video>
             </div>
 
             <!--
@@ -184,10 +195,10 @@
               Formato: JPG optimizado para web (calidad 80-85%), peso ideal < 300KB
             -->
             <div class="galeria__slide" data-slide="5">
-              <!--<div class="galeria__overlay-texto">
+              <div class="galeria__overlay-texto">
                 <h2>TENDEDERO PLEGABLE<br />6 FILAS</h2>
                 <p>Más espacio para tender, pliegalo cuando lo necesitas.</p>
-              </div>-->
+              </div>
               <div class="galeria__sello-peso">
                 SOPORTA HASTA<br /><strong>120</strong>KG
               </div>

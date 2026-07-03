@@ -35,6 +35,12 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
+  <!-- ===== BARRA DE CONFIANZA (arriba de todo) ===== -->
+  <div class="trust-bar">
+    <div class="trust-bar__item trust-bar__item--destacado">💰 PAGO CONTRA ENTREGA</div>
+    <div class="trust-bar__item">🚚 Envío gratis a todo el Perú</div>
+    <div class="trust-bar__item">🔒 Compra 100% segura</div>
+  </div>
 
   <!-- ============================================================
        BARRA SUPERIOR DE CONFIANZA
@@ -463,6 +469,46 @@
     </div>
   </main>
 
+  <!-- ===== CONFIANZA: agencias de envío + métodos de pago (debajo del producto) ===== -->
+  <section class="franja-confianza franja-confianza--top">
+    <div class="contenedor">
+      <h3 class="seccion-titulo-centrado">ENVÍOS RÁPIDOS Y SEGUROS A TODO EL PERÚ</h3>
+
+      <!--
+        LOGOS DE COURIERS: dinsides.png, shalom.png, olva-courier.png, marvisur.png
+        Tamaño recomendado: 160x60 px cada uno (fondo transparente PNG)
+        Estos logos son de las empresas de courier; reemplázalos con
+        los logos reales otorgados por cada empresa o tus aliados logísticos.
+      -->
+      <div class="logos-fila">
+        <img src="assets/images/logo-courier-dinsides.png" alt="Dinsides Courier"  loading="lazy" />
+        <img src="assets/images/logo-courier-shalom.png" alt="Shalom"  loading="lazy" />
+        <img src="assets/images/logo-courier-olva.png" alt="Olva Courier"  loading="lazy" />
+        <img src="assets/images/logo-courier-marvisur.png" alt="Expreso Marvisur"  loading="lazy" />
+      </div>
+
+      <!--
+        LOGOS DE MÉTODOS DE PAGO: visa.png, mastercard.png, amex.png, yape.png,
+        plin.png, bcp.png, scotiabank.png, interbank.png, bbva.png
+        Tamaño recomendado: 100x40 px cada uno (fondo transparente PNG)
+        Puedes descargar los logos oficiales desde el sitio de marca de
+        cada entidad (la mayoría tiene "brand guidelines" públicas).
+      -->
+      <div class="logos-fila logos-fila--pagos">
+        <img src="assets/images/logo-pago-visa.png" alt="Visa"  loading="lazy" />
+        <img src="assets/images/logo-pago-mastercard.png" alt="Mastercard"  loading="lazy" />
+        <img src="assets/images/logo-pago-amex.png" alt="American Express"  loading="lazy" />
+        <img src="assets/images/logo-pago-yape.png" alt="Yape"  loading="lazy" />
+        <img src="assets/images/logo-pago-plin.png" alt="Plin"  loading="lazy" />
+        <img src="assets/images/logo-pago-bcp.png" alt="BCP"  loading="lazy" />
+        <img src="assets/images/logo-pago-scotiabank.png" alt="Scotiabank"  loading="lazy" />
+        <img src="assets/images/logo-pago-interbank.png" alt="Interbank"  loading="lazy" />
+        <img src="assets/images/logo-pago-bbva.png" alt="BBVA"  loading="lazy" />
+      </div>
+
+          </div>
+  </section>
+
   <!-- ============================================================
        PROBLEMA → SOLUCIÓN
        ============================================================ -->
@@ -591,41 +637,7 @@
        ============================================================ -->
   <section class="franja-confianza">
     <div class="contenedor">
-      <h3 class="seccion-titulo-centrado">ENVÍOS RÁPIDOS Y SEGUROS A TODO EL PERÚ</h3>
-
-      <!--
-        LOGOS DE COURIERS: dinsides.png, shalom.png, olva-courier.png, marvisur.png
-        Tamaño recomendado: 160x60 px cada uno (fondo transparente PNG)
-        Estos logos son de las empresas de courier; reemplázalos con
-        los logos reales otorgados por cada empresa o tus aliados logísticos.
-      -->
-      <div class="logos-fila">
-        <img src="assets/images/logo-courier-dinsides.png" alt="Dinsides Courier"  loading="lazy" />
-        <img src="assets/images/logo-courier-shalom.png" alt="Shalom"  loading="lazy" />
-        <img src="assets/images/logo-courier-olva.png" alt="Olva Courier"  loading="lazy" />
-        <img src="assets/images/logo-courier-marvisur.png" alt="Expreso Marvisur"  loading="lazy" />
-      </div>
-
-      <!--
-        LOGOS DE MÉTODOS DE PAGO: visa.png, mastercard.png, amex.png, yape.png,
-        plin.png, bcp.png, scotiabank.png, interbank.png, bbva.png
-        Tamaño recomendado: 100x40 px cada uno (fondo transparente PNG)
-        Puedes descargar los logos oficiales desde el sitio de marca de
-        cada entidad (la mayoría tiene "brand guidelines" públicas).
-      -->
-      <div class="logos-fila logos-fila--pagos">
-        <img src="assets/images/logo-pago-visa.png" alt="Visa"  loading="lazy" />
-        <img src="assets/images/logo-pago-mastercard.png" alt="Mastercard"  loading="lazy" />
-        <img src="assets/images/logo-pago-amex.png" alt="American Express"  loading="lazy" />
-        <img src="assets/images/logo-pago-yape.png" alt="Yape"  loading="lazy" />
-        <img src="assets/images/logo-pago-plin.png" alt="Plin"  loading="lazy" />
-        <img src="assets/images/logo-pago-bcp.png" alt="BCP"  loading="lazy" />
-        <img src="assets/images/logo-pago-scotiabank.png" alt="Scotiabank"  loading="lazy" />
-        <img src="assets/images/logo-pago-interbank.png" alt="Interbank"  loading="lazy" />
-        <img src="assets/images/logo-pago-bbva.png" alt="BBVA"  loading="lazy" />
-      </div>
-
-      <h3 class="seccion-titulo-centrado">+10,000 CLIENTES FELICES EN TODO EL PERÚ</h3>
+<h3 class="seccion-titulo-centrado">+10,000 CLIENTES FELICES EN TODO EL PERÚ</h3>
 
       <!--
         FOTOS DE CLIENTES (testimoniales): cliente-testimonio-1.jpg a cliente-testimonio-6.jpg

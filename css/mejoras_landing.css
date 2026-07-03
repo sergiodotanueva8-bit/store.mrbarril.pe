@@ -552,3 +552,37 @@
   font-size: 11.5px;
   color: var(--color-texto-secundario, #6B7280);
 }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   BARRA DE CONFIANZA (arriba de todo)
+   ═══════════════════════════════════════════════════════════════════════════ */
+.trust-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 6px 18px;
+  background: #111;
+  color: #fff;
+  padding: 8px 12px;
+  font-size: 12.5px;
+  font-weight: 600;
+  text-align: center;
+}
+.trust-bar__item { white-space: nowrap; opacity: 0.92; }
+.trust-bar__item--destacado {
+  background: var(--color-naranja, #f4750f);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 999px;
+  font-weight: 800;
+  letter-spacing: 0.3px;
+  opacity: 1;
+  box-shadow: 0 0 0 2px rgba(244,117,15,0.25);
+}
+@media (max-width: 480px) {
+  .trust-bar { gap: 5px 12px; font-size: 11.5px; padding: 7px 8px; }
+}
+
+/* Franja de logos cuando va justo debajo del producto */
+.franja-confianza--top { padding-top: 18px; padding-bottom: 8px; }

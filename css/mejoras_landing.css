@@ -586,3 +586,78 @@
 
 /* Franja de logos cuando va justo debajo del producto */
 .franja-confianza--top { padding-top: 18px; padding-bottom: 8px; }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   GARANTÍA SÓLIDA (sello 30 días + puntos de respaldo)
+   ═══════════════════════════════════════════════════════════════════════════ */
+.mej-garantia {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: linear-gradient(135deg, #f0fbf5 0%, #ffffff 100%);
+  border: 1.5px solid var(--color-verde, #2E9E5B);
+  border-radius: var(--radio-lg, 14px);
+  padding: 16px 18px;
+  margin-top: 8px;
+  box-shadow: 0 4px 16px rgba(46, 158, 91, 0.12);
+}
+.mej-garantia__sello {
+  flex: 0 0 auto;
+  width: 84px;
+  height: 84px;
+  border-radius: 50%;
+  background: var(--color-verde, #2E9E5B);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 0 0 4px rgba(46,158,91,0.18);
+}
+.mej-garantia__sello-num {
+  font-size: 30px;
+  font-weight: 900;
+  line-height: 1;
+}
+.mej-garantia__sello-txt {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  margin-top: 3px;
+  line-height: 1.15;
+}
+.mej-garantia__titulo {
+  font-size: 15.5px;
+  font-weight: 800;
+  color: var(--color-texto, #1f2937);
+  margin-bottom: 8px;
+}
+.mej-garantia__lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.mej-garantia__lista li {
+  position: relative;
+  padding-left: 20px;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--color-texto-secundario, #4b5563);
+}
+.mej-garantia__lista li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--color-verde, #2E9E5B);
+  font-weight: 900;
+}
+@media (max-width: 400px) {
+  .mej-garantia { gap: 12px; padding: 14px; }
+  .mej-garantia__sello { width: 72px; height: 72px; }
+  .mej-garantia__sello-num { font-size: 26px; }
+}

@@ -13,6 +13,13 @@ document.addEventListener("DOMContentLoaded", function () {
   Pixels.inicializar();
   SupabaseCliente.registrarEvento("page_view");
 
+  Pixels.dispararEvento("ViewContent", "ViewContent", {
+    content_id: CONFIG.TIENDA_SLUG,
+    content_name: CONFIG.PRODUCTO_NOMBRE,
+    value: CONFIG.PRECIO_REGULAR,
+    currency: "PEN",
+  });
+
   // ----------------------------------------------------------
   // GALERÍA: carrusel táctil (scroll-snap) con dots + miniaturas
   // ----------------------------------------------------------
@@ -297,7 +304,20 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll("[data-abrir-checkout]").forEach(function (boton) {
     boton.addEventListener("click", function () {
       SupabaseCliente.registrarEvento("click_cta_principal");
-      Pixels.dispararEvento("InitiateCheckout", "InitiateCheckout");
+      Pixels.dispararEvento("AddToCart", "AddToCart", {
+        content_id: CONFIG.TIENDA_SLUG,
+        content_name: CONFIG.PRODUCTO_NOMBRE,
+        quantity: cantidadSeleccionada,
+        value: obtenerPrecioUnitarioPorCantidad(cantidadSeleccionada) * cantidadSeleccionada,
+        currency: "PEN",
+      });
+      Pixels.dispararEvento("InitiateCheckout", "InitiateCheckout", {
+        content_id: CONFIG.TIENDA_SLUG,
+        content_name: CONFIG.PRODUCTO_NOMBRE,
+        quantity: cantidadSeleccionada,
+        value: obtenerPrecioUnitarioPorCantidad(cantidadSeleccionada) * cantidadSeleccionada,
+        currency: "PEN",
+      });
       if (window.CheckoutModal) {
         window.CheckoutModal.abrir(cantidadSeleccionada);
       }

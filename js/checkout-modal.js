@@ -351,6 +351,8 @@ const CheckoutModal = (function () {
 
     // Disparar evento de conversión en pixels
     Pixels.dispararEvento("Purchase", "CompletePayment", {
+      content_id: CONFIG.TIENDA_SLUG,
+      content_name: CONFIG.PRODUCTO_NOMBRE,
       value: resumen.total,
       currency: "PEN",
     });

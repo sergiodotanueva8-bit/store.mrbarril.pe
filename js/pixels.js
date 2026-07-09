@@ -69,6 +69,18 @@ const Pixels = (function () {
    * nombreMeta y nombreTikTok pueden ser distintos porque cada
    * plataforma nombra sus eventos estándar de forma diferente.
    */
+  function identificarUsuario(datos) {
+    try {
+      if (CONFIG.TIKTOK_PIXEL_ID && window.ttq && datos && datos.telefono) {
+        window.ttq.identify({
+          phone_number: datos.telefono,
+        });
+      }
+    } catch (e) {
+      console.warn("[Pixel TikTok] No se pudo identificar usuario:", e);
+    }
+  }
+
   function dispararEvento(nombreMeta, nombreTikTok, datos) {
     try {
       if (CONFIG.META_PIXEL_ID && window.fbq) {
@@ -90,5 +102,6 @@ const Pixels = (function () {
   return {
     inicializar,
     dispararEvento,
+    identificarUsuario,
   };
 })();

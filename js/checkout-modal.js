@@ -349,6 +349,9 @@ const CheckoutModal = (function () {
       }
     });
 
+    // Advanced Matching: enviar teléfono para mejorar atribución
+    Pixels.identificarUsuario({ telefono: datos.whatsapp });
+
     // Disparar evento de conversión en pixels
     Pixels.dispararEvento("Purchase", "CompletePayment", {
       content_id: CONFIG.TIENDA_SLUG,

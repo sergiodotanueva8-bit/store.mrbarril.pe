@@ -76,7 +76,7 @@ const CONFIG = {
   // dispararán automáticamente en los eventos clave (vista de
   // página, click en CTA, pedido confirmado). Déjalos vacíos
   // ("") si no los vas a usar todavía.
-  META_PIXEL_ID: "",       // Ejemplo: "1234567890123456"
+  META_PIXEL_ID: "2283061199194039",       // Ejemplo: "1234567890123456"
   TIKTOK_PIXEL_ID: "D97EJ73C77U29TKO6ETG",
 
 };

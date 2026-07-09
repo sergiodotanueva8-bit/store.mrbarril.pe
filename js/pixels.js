@@ -72,8 +72,13 @@ const Pixels = (function () {
   function identificarUsuario(datos) {
     try {
       if (CONFIG.TIKTOK_PIXEL_ID && window.ttq && datos && datos.telefono) {
+        var soloDigitos = String(datos.telefono).replace(/\D/g, "");
+        // Si no trae código de país (9 dígitos = celular peruano), se lo agregamos.
+        if (soloDigitos.length === 9) {
+          soloDigitos = "51" + soloDigitos;
+        }
         window.ttq.identify({
-          phone_number: datos.telefono,
+          phone_number: "+" + soloDigitos,
         });
       }
     } catch (e) {
